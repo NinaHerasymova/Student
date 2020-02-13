@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <script>
+        function sum(a, b) {
+            return a + b;
+        }
+        function sub(a, b) {
+            return a - b;
+        }
+        function div(a, b) {
+            return a / b;
+        }
+        function mul(a, b) {
+            return a * b;
+        }
+        describe("sum", function () {
+            it("передаем a = 5, b = 10", function () {
+                assert.equal(sum(5, 10), 15);
+            });
+            it("передаем a = 10, b = 4", function () {
+                assert.equal(sub(10, 4), 6);
+            });
+            it("передаем a = 12, b = 3", function () {
+                assert.equal(div(12, 3), 4);
+            });
+            it("передаем a = 7, b = 4", function () {
+                assert.equal(mul(7, 4), 28);
+            });
+        });
+
+    </script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+</body>
+
+</html>

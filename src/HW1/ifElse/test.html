@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <script src="./task1.js"></script>
+    <script src="./task2.js"></script>
+    <script src="./task3.js"></script>
+    <script src="./task4.js"></script>
+    <script src="./task5.js"></script>
+    <script>
+        describe("ternar", function () {
+            it("передаем a = 6, b = 10", function () {
+                assert.equal(ternar(6, 10), 60);
+            });
+            it("передаем a = 7, b = 10", function () {
+                assert.equal(ternar(7, 10), 17);
+            });
+            it("передаем a = null, b = 10", function () {
+                assert.equal(ternar(null, 10), "Invalid type of value");
+            });
+            it("передаем a = 6, b = null", function () {
+                assert.equal(ternar(6, null), "Invalid type of value");
+            });
+            it("передаем a = undefined, b = 10", function () {
+                assert.equal(ternar(undefined, 10), "Invalid type of value");
+            });
+            it("передаем a = 6, b = undefined", function () {
+                assert.equal(ternar(6, undefined), "Invalid type of value");
+            });
+            it("передаем a = '6', b = 10", function () {
+                assert.equal(ternar('6', 10), "Invalid type of value");
+            });
+            it("передаем a = 6, b = '10'", function () {
+                assert.equal(ternar(6, '10'), "Invalid type of value");
+            });
+        });
+        describe("axe", function () {
+            it("передаем x = 6, y = 10", function () {
+                assert.equal(axe(6, 10), 'I');
+            });
+            it("передаем x = -6, y = 10", function () {
+                assert.equal(axe(-6, 10), 'II');
+            });
+            it("передаем x = -6, y = -10", function () {
+                assert.equal(axe(-6, -10), 'III');
+            });
+            it("передаем x = 6, y = -10", function () {
+                assert.equal(axe(6, -10), 'IV');
+            });
+            it("передаем x = 0, y = 0", function () {
+                assert.equal(axe(0, 0), 'In center');
+            });
+            it("передаем x = 0, y = -10", function () {
+                assert.equal(axe(0, -10), 'On y axe');
+            });
+            it("передаем x = 6, y = 0", function () {
+                assert.equal(axe(6, 0), 'On x axe');
+            });
+            it("передаем x = '6', y = 0", function () {
+                assert.equal(axe('6', 0), 'Invalid type of value');
+            });
+            it("передаем x = 6, y = 'ghgh'", function () {
+                assert.equal(axe(6, 'ghgh'), 'Invalid type of value');
+            });
+            it("передаем x = NaN, y = 5", function () {
+                assert.equal(axe(NaN, 5), 'Invalid type of value');
+            });
+            it("передаем x = 4, y = NaN", function () {
+                assert.equal(axe(4, NaN), 'Invalid type of value');
+            });
+            it("передаем x = undefined, y = 5", function () {
+                assert.equal(axe(undefined, 5), 'Invalid type of value');
+            });
+            it("передаем x = NaN, y = undefined", function () {
+                assert.equal(axe(NaN, undefined), 'Invalid type of value');
+            });
+
+        });
+
+        describe("max", function () {
+            it("передаем a = 6, b = 10, c=3", function () {
+                assert.equal(max(6, 10, 3), 19);
+            });
+            it("передаем a = 6, b = -10, c=3", function () {
+                assert.equal(max(6, -10, 3), 9);
+            });
+            it("передаем a = 6, b = 10, c=-3", function () {
+                assert.equal(max(6, 10, -3), 16);
+            });
+            it("передаем a = '6', b = 10, c=-3", function () {
+                assert.equal(max('6', 10, -3), "Invalid type of value");
+            });
+
+
+        });
+        describe("add", function () {
+            it("передаем a = 6, b = 1, c=3", function () {
+                assert.equal(add(6, 1, 3), 21);
+            });
+            it("передаем a = '1', b = 1, c=1", function () {
+                assert.equal(add('1', 1, 1), "Invalid type of value");
+            });
+            it("передаем a = 0, b = 0, c=0", function () {
+                assert.equal(add(0, 0, 0), "Expressions are equal");
+            });
+        });
+        describe("student", function () {
+            it("передаем mark = 95", function () {
+                assert.equal(student(95), 'A');
+            });
+            it("передаем mark = 80", function () {
+                assert.equal(student(80), 'B');
+            });
+            it("передаем mark = 70", function () {
+                assert.equal(student(70), 'C');
+            });
+            it("передаем mark = 53", function () {
+                assert.equal(student(53), 'D');
+            });
+            it("передаем mark = 24", function () {
+                assert.equal(student(24), 'E');
+            });
+            it("передаем mark = 11", function () {
+                assert.equal(student(11), 'F');
+            });
+            it("передаем mark = 'ggg'", function () {
+                assert.equal(student('ggg'), "Invalid type of value");
+            });
+            
+        });
+
+
+    </script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+
+</body>
+
+</html>
