@@ -1,10 +1,17 @@
 "use strict"
 
 const numberToWords = (n) => {
+    let letters=/[a-z]/i;
+    let prov=letters.test(n);
+    if (typeof n=='number'& n!==Infinity&isNaN(n)==false){
+        n=String(n);
+    }else if(prov==true||typeof n !=='string'||n.length==0){
+        return 'Invalid type of value'
+    }
     let string = n, units, tens, start, end, chunks, chunksLen, chunk, ints, i, word, words;
     let and = 'and';
     if (string === '0') {
-        console.log('zero');
+       return 'zero';
     }
     units = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
 
@@ -34,7 +41,6 @@ const numberToWords = (n) => {
             if ((word = units[ints[2]])) {
                 words.push(word + ' hundred');
             }
-        } console.log(words.reverse().join(' '));
+        } return(words.reverse().join(' '));
     }
 }
-numberToWords("562");

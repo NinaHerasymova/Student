@@ -1,0 +1,85 @@
+.flex {
+    display: flex;
+    width: 300px;     
+}
+.calculator > :nth-child(2){
+    background-color: #3F4143;
+}
+.calculator {
+    width: 300px;
+    background: #5F6062;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center; 
+    font-family: Arial, Helvetica, sans-serif;
+}
+.flex>div {
+    flex-grow: 1;
+    height: 55px;
+    width: 50px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: white;
+       line-height: 55px;
+}
+.flex > div:last-child{
+    background-color: #FF9F0B;
+    font-size: 2.5em;
+}
+#display {
+    display: block;
+    height: 80px;
+    width: 290px;
+    text-align: right;
+    background-color: black;    
+    color: white;
+    padding: 5px;
+}
+#inp{
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: white;
+    font-size: 4em;
+    width: 100%;
+    text-align: right;
+}
+#zero {
+    width: 98px;
+    padding-left: 27px;
+    text-align: start;
+}
+#mult{
+    color: transparent;
+}
+#mult::before{
+    color: white;
+    content: '×';
+    padding-left: 9px;
+}
+#division{
+    color: transparent;
+}
+#division::before{
+    color: white;
+    content: '÷';
+    padding-left: 9px;
+}
+#plus_minus{
+    color: transparent;
+}
+#plus_minus::before{
+    color: white;
+    content: '+/-';
+    padding-left: 9px;
+}
+#percent{
+    color: transparent;
+}
+#percent::before{
+    color: white;
+    content: '%';
+    padding-left: 9px;
+}

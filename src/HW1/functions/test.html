@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test "Function"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <script src="./task1.js"></script>
+    <script src="./task2.js"></script>
+    <script src="./task3.js"></script>
+    <script src="./task4.js"></script>
+    <script>
+        describe("getDay", function () {
+            it("передаем today = 6", function () {
+                assert.equal(getDay(6), 'Saturday');
+            });
+            it("передаем today = '65'", function () {
+                assert.equal(getDay('65'), 'Unreal value');
+            });
+            it("передаем today = NaN", function () {
+                assert.equal(getDay(NaN), 'Unreal value');
+            });
+            it("передаем today = undefined", function () {
+                assert.equal(getDay(undefined), 'Unreal value');
+            });
+                        
+        });
+        describe("numberToWords", function () {
+            it("передаем n = 613", function () {
+                assert.equal(numberToWords(613), 'six hundred thirteen');
+            });
+            it("передаем n = '65'", function () {
+                assert.equal(numberToWords('65'), 'sixty five');
+            });
+            it("передаем n = '65hahaha'", function () {
+                assert.equal(numberToWords('65hahaha'), 'Invalid type of value');
+            });
+            it("передаем n = 'hhh'", function () {
+                assert.equal(numberToWords('hhh'), 'Invalid type of value');
+            });
+            it("передаем n = NaN", function () {
+                assert.equal(numberToWords(NaN), 'Invalid type of value');
+            });
+            it("передаем n = undefined", function () {
+                assert.equal(numberToWords(undefined), 'Invalid type of value');
+            });
+            it("передаем n = Infinity", function () {
+                assert.equal(numberToWords(Infinity), 'Invalid type of value');
+            });
+            it("передаем n = null", function () {
+                assert.equal(numberToWords(null), 'Invalid type of value');
+            });
+                                    
+        });
+        describe("wordsToNumber", function () {
+            it("передаем n = 'five hundred twenty'", function () {
+                assert.equal(wordsToNumber('five hundred twenty'), '520');
+            });
+            it("передаем n = ''", function () {
+                assert.equal(wordsToNumber(''), 'Invalid type of value');
+            });
+            it("передаем n = '65'", function () {
+                assert.equal(wordsToNumber('65'), 'Invalid type of value');
+            });
+            it("передаем n = 65", function () {
+                assert.equal(wordsToNumber(65), 'Invalid type of value');
+            });
+            it("передаем n = '65hahaha'", function () {
+                assert.equal(wordsToNumber('65hahaha'), 'Invalid type of value');
+            });
+            it("передаем n = 'hhh'", function () {
+                assert.equal(wordsToNumber('hhh'), 'Invalid type of value');
+            });
+            it("передаем n = NaN", function () {
+                assert.equal(wordsToNumber(NaN), 'Invalid type of value');
+            });
+            it("передаем n = undefined", function () {
+                assert.equal(wordsToNumber(undefined), 'Invalid type of value');
+            });
+            it("передаем n = Infinity", function () {
+                assert.equal(wordsToNumber(Infinity), 'Invalid type of value');
+            });
+            it("передаем n = null", function () {
+                assert.equal(wordsToNumber(null), 'Invalid type of value');
+            });
+                                    
+        });
+        describe("distance", function () {
+            it("передаем x1=-6, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(-6, 15,2,36), 22.47);
+            });
+            it("передаем x1=26.3, y1=1.9, x2=-11.2, y2=89.2", function () {
+                assert.equal(distance(26.3,1.9,-11.2,89.2), 95.01);
+            });
+            it("передаем x1=NaN, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(NaN, 15,2,36), 'Invalid type of value');
+            });
+            it("передаем x1=null, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(null, 15,2,36), 'Invalid type of value');
+            });
+            it("передаем x1=undefined, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(undefined, 15,2,36), 'Invalid type of value');
+            });
+            it("передаем x1='jk', y1=15, x2=2, y2=36", function () {
+                assert.equal(distance('jk', 15,2,36), 'Invalid type of value');
+            });
+            it("передаем x1=Infinity, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(Infinity, 15,2,36), Infinity);
+            });
+            it("передаем x1=-Infinity, y1=15, x2=2, y2=36", function () {
+                assert.equal(distance(-Infinity, 15,2,36), Infinity);
+            });
+            
+
+        });
+
+            </script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+
+</body>
+
+</html>

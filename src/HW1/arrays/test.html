@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test "Arrays"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <script src="./task1.js"></script>
+    <script src="./task2.js"></script>
+    <script src="./task3.js"></script>
+    <script src="./task4.js"></script>
+    <script src="./task5.js"></script>
+    <script src="./task6.js"></script>
+    <script src="./task7.js"></script>
+    <script src="./task8.js"></script>
+    <script src="./task9_1.js"></script>
+    <script src="./task9_2.js"></script>
+    <script src="./task9_3.js"></script>
+    <script src="./task10_1.js"></script>
+    <script src="./task10_2.js"></script>
+    <script src="./task10_3.js"></script>
+    <script src="./task10_4.js"></script>
+    <script>
+        describe("minEl", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, 36, 0, 65, 11]), -6);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, Infinity, 0, 65, 11]), -6);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, -Infinity, 0, 65, 11]), -Infinity);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, null, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, NaN, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, undefined, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11]", function () {
+                assert.equal(minEl([-6, 22, 235, 'undefined', 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(minEl([]), 'Array is empty');
+            });
+
+        });
+        describe("maxEl", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, 36, 0, 65, 11]), 235);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, Infinity, 0, 65, 11]), Infinity);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, -Infinity, 0, 65, 11]), 235);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, null, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, NaN, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, undefined, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11]", function () {
+                assert.equal(maxEl([-6, 22, 235, 'undefined', 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(maxEl([]), 'Array is empty');
+            });
+
+        });
+        describe("minIndex", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, 36, 0, 65, 11]), 0);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, Infinity, 0, 65, 11]), 0);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, -Infinity, 0, 65, 11]), 3);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, null, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, NaN, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, undefined, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11]", function () {
+                assert.equal(minIndex([-6, 22, 235, 'undefined', 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(minIndex([]), 'Array is empty');
+            });
+
+        });
+        describe("maxIndex", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, 36, 0, 65, 11]), 2);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, Infinity, 0, 65, 11]), 3);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, -Infinity, 0, 65, 11]), 2);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, null, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, NaN, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, undefined, 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11]", function () {
+                assert.equal(maxIndex([-6, 22, 235, 'undefined', 0, 65, 11]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(maxIndex([]), 'Array is empty');
+            });
+
+        });
+        describe("oddSum", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, 36, 0, 65, 11]), 123);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, Infinity, 0, 65, 11]), Infinity);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, -Infinity, 0, 65, 11]), -Infinity);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, null, 0, 65, 11]), 'Not all elements are numbers');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, NaN, 0, 65, 11]), 'Not all elements are numbers');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, undefined, 0, 65, 11]), 'Not all elements are numbers');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11]", function () {
+                assert.equal(oddSum([-6, 22, 235, 'undefined', 0, 65, 11]), 'Not all elements are numbers');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(oddSum([]), 'Array is empty');
+            });
+        });
+        describe("reverse", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11]", function () {
+                assert.deepEqual(reverse([-6, 22, 235, 36, 0, 65, 11]), [11, 65, 0, 36, 235, 22, -6]);
+            });
+            it("передаем arr = [944, 22, 2, -79, -5, 56, 101]", function () {
+                assert.deepEqual(reverse([944, 22, 2, -79, -5, 56, 101]), [101, 56, -5, -79, 2, 22, 944]);
+            });
+            it("передаем arr = [-6, undefined, null, NaN, Infinity, 65, 11]", function () {
+                assert.deepEqual(reverse([-6, undefined, null, NaN, Infinity, 65, 11]), [11, 65, Infinity, NaN, null, undefined, -6]);
+            });
+            it("передаем arr = ['-6','', 'null', 'NaN', 'Infinity', '65', '11']", function () {
+                assert.deepEqual(reverse(['-6', '', 'null', 'NaN', 'Infinity', '65', '11']), ['11', '65', 'Infinity', 'NaN', 'null', '', '-6']);
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(reverse([]), 'Array is empty');
+            });
+        });
+        describe("oddElSum", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, 36, 0, 65, 11, -117]), 4);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, Infinity, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, -Infinity, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.equal(oddElSum([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.equal(oddElSum([]), 'Array is empty');
+            });
+        });
+        describe("viceVersa", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, 22, 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, 22, 235, 36]);
+            });
+            it("передаем arr = [-6, '22', 235, '36', 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, '22', 235, '36', 0, 65, 11, -117]), [0, 65, 11, -117, -6, '22', 235, '36']);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(viceVersa([-6, 22, 235, Infinity, 0, 65, 11, -117]), [0, 65, 11, -117, -6, 22, 235, Infinity]);
+            });
+            it("передаем arr = [-6, -Infinity, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, -Infinity, 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, -Infinity, 235, 36]);
+            });
+            it("передаем arr = [-6, null, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, null, 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, null, 235, 36]);
+            });
+            it("передаем arr = [-6, NaN, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, NaN, 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, NaN, 235, 36]);
+            });
+            it("передаем arr = [-6, undefined, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, undefined, 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, undefined, 235, 36]);
+            });
+            it("передаем arr = [-6, 'undefined', 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(viceVersa([-6, 'undefined', 235, 36, 0, 65, 11, -117]), [0, 65, 11, -117, -6, 'undefined', 235, 36]);
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(viceVersa([]), []);
+            });
+        });
+        describe("bubbleSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(bubbleSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(bubbleSort([]), 'Array is empty');
+            });
+        });
+        describe("selectionSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });            
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(selectionSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(selectionSort([]), 'Array is empty');
+            });
+        });
+        describe("insertSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(insertSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(insertSort([]), 'Array is empty');
+            });
+        });
+        describe("quickSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(quickSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(quickSort([]), []);
+            });
+        });
+        describe("mergeSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(mergeSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(mergeSort([]), []);
+            });
+        });
+        describe("shellSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(shellSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(shellSort([]), 'Array is empty');
+            });
+        });
+        describe("heapSort", function () {
+            it("передаем arr = [-6, 22, 235, 36, 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, 36, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 36, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, Infinity, 0, 65, 11,-117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, Infinity, 0, 65, 11, -117]), [-117, -6, 0, 11, 22, 65, 235, Infinity]);
+            });
+            it("передаем arr = [-6, 22, 235, -Infinity, 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, -Infinity, 0, 65, 11, -117]), [-Infinity, -117, -6, 0, 11, 22, 65, 235]);
+            });
+            it("передаем arr = [-6, 22, 235, null, 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, null, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, NaN, 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, NaN, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, undefined, 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, undefined, 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = [-6, 22, 235, 'undefined', 0, 65, 11, -117]", function () {
+                assert.deepEqual(heapSort([-6, 22, 235, 'undefined', 0, 65, 11, -117]), 'Not all elements are comparable');
+            });
+            it("передаем arr = []", function () {
+                assert.deepEqual(heapSort([]), 'Array is empty');
+            });
+        });
+    </script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+
+</body>
+
+</html>

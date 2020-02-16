@@ -1,12 +1,15 @@
-
 "use strict"
-let arr=[23, 4, 789, 34, 8,90]
-function maxIndex() {
+
+const maxIndex = (arr) => {
     let max = 0;
-    for (let i = 1; i<arr.length; i++) {
-        if (arr[i]>arr[max]) {
-            max = i;
-        }
-    }console.log(max);
+    if (arr.length > 0) {
+        for (let i = 1; i < arr.length; i++) {
+            if (typeof arr[i] !== 'number' || isNaN(arr[i]) == true) {
+                return 'Not all elements are comparable';
+            }
+            if (arr[i] > arr[max]) {
+                max = i;
+            }
+        } return max;
+    } return 'Array is empty'
 }
-maxIndex(arr);

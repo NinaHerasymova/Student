@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test "loops"</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <script>
+        mocha.setup('bdd');
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+
+<body>
+    <script src="./task1.js"></script>
+    <script src="./task2.js"></script>
+    <script src="./task3.js"></script>
+    <script src="./task4.js"></script>
+    <script src="./task5.js"></script>
+    <script src="./task6.js"></script>
+    <script>
+        describe("evenSumm", function () {
+            it("передаем a = 6, b = 10", function () {
+                assert.equal(evenSumm(6, 10), 'Summ = 24; quantity = 3');
+            });
+            it("передаем a = 'fff', b = 10", function () {
+                assert.equal(evenSumm('fff', 10), 'Invalid type of value');
+            });
+            it("передаем a = 6, b = 'ddd'", function () {
+                assert.equal(evenSumm(6, 'ddd'), 'Invalid type of value');
+            });
+            it("передаем a = undefined, b = 10", function () {
+                assert.equal(evenSumm(undefined, 10), 'Invalid type of value');
+            });
+            it("передаем a = 6, b = undefined", function () {
+                assert.equal(evenSumm(6, undefined), 'Invalid type of value');
+            });
+            it("передаем a = null, b = 10", function () {
+                assert.equal(evenSumm(null, 10), 'Invalid type of value');
+            });
+            it("передаем a = 6, b = null", function () {
+                assert.equal(evenSumm(6, null), 'Invalid type of value');
+            });
+            it("передаем a = -6, b = 10", function () {
+                assert.equal(evenSumm(-6, 10), 'Number is not natural');
+            });
+            it("передаем a = 6, b = -10", function () {
+                assert.equal(evenSumm(6, -10), 'Unreal diapasone');
+            });
+            it("передаем a = NaN, b = -10", function () {
+                assert.equal(evenSumm(NaN, -10), 'Value is not integer or NaN');
+            });
+            it("передаем a = 6, b = NaN", function () {
+                assert.equal(evenSumm(6, NaN), 'Value is not integer or NaN');
+            });
+            it("передаем a = 8, b = 2.3", function () {
+                assert.equal(evenSumm(8, 2.3), 'Value is not integer or NaN');
+            });
+            it("передаем a = 2.3, b = 8", function () {
+                assert.equal(evenSumm(2.3, 8), 'Value is not integer or NaN');
+            });
+            it("передаем a = Infinity, b = 8", function () {
+                assert.equal(evenSumm(Infinity, 8), 'Value is not integer or NaN');
+            });
+            it("передаем a = 5, b = Infinity", function () {
+                assert.equal(evenSumm(5, Infinity), 'Value is not integer or NaN');
+            });
+            it("передаем a = 5, b = 0", function () {
+                assert.equal(evenSumm(5, 0), 'Unreal diapasone');
+            });
+            it("передаем a = 10, b = 5", function () {
+                assert.equal(evenSumm(10, 5), 'Unreal diapasone');
+            });
+        });
+        describe("ifPrime", function () {
+            it("передаем num=19", function () {
+                assert.equal(ifPrime(19), 'Prime');
+            });
+            it("передаем num=27", function () {
+                assert.equal(ifPrime(27), 'Composite');
+            });
+            it("передаем num=0", function () {
+                assert.equal(ifPrime(0), 'Number is not natural');
+            });
+            it("передаем num='ffff'", function () {
+                assert.equal(ifPrime('fff'), 'Invalid type of value');
+            });
+            it("передаем num=null", function () {
+                assert.equal(ifPrime(null), 'Invalid type of value');
+            });
+            it("передаем num=undefined", function () {
+                assert.equal(ifPrime(undefined), 'Invalid type of value');
+            });
+            it("передаем num=Infinity", function () {
+                assert.equal(ifPrime(Infinity), 'Number is not integer or NaN');
+            });
+            it("передаем num=NaN", function () {
+                assert.equal(ifPrime(NaN), 'Number is not integer or NaN');
+            });
+            it("передаем num=-5", function () {
+                assert.equal(ifPrime(-5), 'Number is not natural');
+            });
+            it("передаем num=6.2", function () {
+                assert.equal(ifPrime(6.2), 'Number is not integer or NaN');
+            });
+        });
+        describe("sqrt", function () {
+            it("передаем num=19", function () {
+                assert.equal(sqrt(19), 4);
+            });
+            it("передаем num=19,5", function () {
+                assert.equal(sqrt(19.5), 'Value is not integer or NaN');
+            });
+            it("передаем num='hhh'", function () {
+                assert.equal(sqrt('hhh'), 'Invalid type of value');
+            });
+            it("передаем num=-3", function () {
+                assert.equal(sqrt(-3), 'Number is not natural');
+            });
+            it("передаем num=NaN", function () {
+                assert.equal(sqrt(NaN), 'Value is not integer or NaN');
+            });
+            it("передаем num=null", function () {
+                assert.equal(sqrt(null), 'Invalid type of value');
+            });
+            it("передаем num=undefined", function () {
+                assert.equal(sqrt(undefined), 'Invalid type of value');
+            });
+            it("передаем num=Infinity", function () {
+                assert.equal(sqrt(Infinity), 'Value is not integer or NaN');
+            });
+            it("передаем num=0", function () {
+                assert.equal(sqrt(0), 'Number is not natural');
+            });
+
+        });
+        describe("factorial", function () {
+            it("передаем num=4", function () {
+                assert.equal(factorial(4), 24);
+            });
+            it("передаем num='fff'", function () {
+                assert.equal(factorial('fff'), 'Invalid type of value');
+            });
+            it("передаем num=undefined", function () {
+                assert.equal(factorial(undefined), 'Invalid type of value');
+            });
+            it("передаем num=null", function () {
+                assert.equal(factorial(null), 'Invalid type of value');
+            });
+            it("передаем num=-4", function () {
+                assert.equal(factorial(-4), 'Number is not natural');
+            });
+            it("передаем num=3.1", function () {
+                assert.equal(factorial(3.1), 'Value is not integer or NaN');
+            });
+            it("передаем num=Infinity", function () {
+                assert.equal(factorial(Infinity), 'Value is not integer or NaN');
+            });
+            it("передаем num=0", function () {
+                assert.equal(factorial(0), 'Number is not natural');
+            });
+            it("передаем num=NaN", function () {
+                assert.equal(factorial(NaN), 'Value is not integer or NaN');
+            });
+
+        });
+        describe("digitSumm", function () {
+            it("передаем num=124", function () {
+                assert.equal(digitSumm(124), 7);
+            });
+            it("передаем num=null", function () {
+                assert.equal(digitSumm(null), 'Invalid type of value');
+            });
+            it("передаем num='ggg'", function () {
+                assert.equal(digitSumm('ggg'), 'Invalid type of value');
+            });
+            it("передаем num=-563", function () {
+                assert.equal(digitSumm(-563), 14);
+            });
+            it("передаем num=56.3", function () {
+                assert.equal(digitSumm(56.3), 'Value is not integer or NaN');
+            });
+            it("передаем num=undefined", function () {
+                assert.equal(digitSumm(undefined), 'Invalid type of value');
+            });
+            it("передаем num=0", function () {
+                assert.equal(digitSumm(0), 0);
+            });
+            it("передаем num=Infinity", function () {
+                assert.equal(digitSumm(Infinity), 'Value is not integer or NaN');
+            });
+            it("передаем num=NaN", function () {
+                assert.equal(digitSumm(NaN), 'Value is not integer or NaN');
+            });
+        });
+        describe("reverse", function () {
+            it("передаем num=124", function () {
+                assert.equal(reverse(124), 421);
+            });
+            it("передаем num='abcd'", function () {
+                assert.equal(reverse('abcd'), 'Invalid type of value');
+            });
+            it("передаем num=12.4", function () {
+                assert.equal(reverse(12.4), 'Value is not integer or NaN');
+            });
+            it("передаем num=-124", function () {
+                assert.equal(reverse(-124), 421);
+            });
+            it("передаем num=0", function () {
+                assert.equal(reverse(0), 0);
+            });
+            it("передаем num=null", function () {
+                assert.equal(reverse(null), 'Invalid type of value');
+            });
+            it("передаем num=undefined", function () {
+                assert.equal(reverse(undefined), 'Invalid type of value');
+            });
+            it("передаем num=Infinity", function () {
+                assert.equal(reverse(Infinity), 'Value is not integer or NaN');
+            });
+            it("передаем num=NaN", function () {
+                assert.equal(reverse(NaN), 'Value is not integer or NaN');
+            });
+        });
+    </script>
+    <div id="mocha"></div>
+    <script>
+        mocha.run();
+    </script>
+
+</body>
+
+</html>

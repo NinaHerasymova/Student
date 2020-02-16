@@ -1,11 +1,14 @@
 "use strict"
-let arr=[1, 3,9,56, 560,506,45, 13, 28, 22];
-function oddElSum(arr){
+
+const oddElSum = (arr) => {
     let count = 0;
-    for(let i=0;i<arr.length;i++){
-        if(arr[i]%2==!0){
-            count++;
-        }
-    }console.log(count);
+    if (arr.length > 0) {
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] !== 'number' || isNaN(arr[i]) == true||(arr[i]==Infinity||(arr[i]==-Infinity))) {
+                return 'Not all elements are comparable';
+            } if (arr[i] % 2 !== 0) {
+                count++;
+            } 
+        }return count;
+    }return 'Array is empty';
 }
-oddElSum(arr)

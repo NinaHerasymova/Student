@@ -1,11 +1,15 @@
-let arr=[1, 3,-9,56,562,506,45, 13, 22, 22];
+"use strict"
 
-function oddSum(arr){
+const oddSum = (arr) => {
     let sum = 0;
-    for(let i=0;i<arr.length;i++){
-        if(i%2==1){
-            sum= sum+arr[i];
-        }
-    }console.log(sum);
+    if (arr.length > 0) {
+        for (let i = 0; i < arr.length; i++) {
+            if (typeof arr[i] !== 'number' || isNaN(arr[i]) == true) {
+                return 'Not all elements are numbers';
+            }
+            if (i % 2 == 1) {
+                sum = sum + arr[i];
+            }
+        } return sum;
+    } return 'Array is empty'
 }
-oddSum(arr)

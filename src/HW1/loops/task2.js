@@ -1,29 +1,21 @@
 "use strict"
 
 const ifPrime = (num) => {
-    if (num > 1) {
-        num = parseInt(num);
-        if ((num % 2 === 0) && (num !== 2))
-            console.log("Composite");
-        else if (num === 2)
-            console.log("Prime");
-        else {
-            let k = Math.round(Math.sqrt(num));
-            let flag = false;
-
-            for (let i = 2; i < k + 1; i++)
-                if (num % i === 0) {
-                    console.log("Composite");
-                    flag = true;
-                    break;
+    if (typeof num == 'number') {
+        if (Math.ceil(num) - num <= 0) {
+            if (num > 0) {
+                if ((num % 2 == 0) && (num !== 2)) {
+                    return 'Composite';
+                } else if (num === 2) {
+                    return 'Prime';
+                } else {
+                    let k = Math.round(Math.sqrt(num));
+                    for (let i = 2; i < k + 1; i++)
+                        if (num % i === 0) {
+                            return 'Composite';
+                        } return 'Prime';
                 }
-
-            if (flag === false)
-                console.log("Prime");
-        }
-    } else {
-        console.log('Wrong number!!!')
-    }
+            } return 'Number is not natural'
+        } return 'Number is not integer or NaN'
+    } return 'Invalid type of value'
 }
-
-ifPrime(7);

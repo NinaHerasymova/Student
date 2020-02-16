@@ -1,32 +1,33 @@
 "use strict"
 
-let arr=[1, 3,9,56, 560,506,45, 13, 28, 22];
-
-const mergeSort =  (arr) =>{
-    let merge = (left, right)=> {
-        let result = [];
-        let il = 0;
-        let ir = 0;
-        while (il < left.length && ir < right.length) {
-            if (left[il] < right[ir]) {
-                result.push(left[il++]);
+const mergeSort = (arr) => {
+    if (arr.length <= 1) {
+        return arr
+    }
+    for (let i = 1; i < arr.length; i++) {
+        if (typeof arr[i] !== 'number' || isNaN(arr[i]) == true) {
+            return 'Not all elements are comparable';
+        }
+    }
+    let middle = arr.length / 2;
+    let left = arr.slice(0, middle);
+    let right = arr.slice(middle, arr.length);
+    return merge(mergeSort(left), mergeSort(right));
+}
+const merge = (left, right) => {
+    let result = [];
+    while (left.length || right.length) {
+        if (left.length && right.length) {
+            if (left[0] < right[0]) {
+                result.push(left.shift())
             } else {
-                result.push(right[ir++]);
+                result.push(right.shift())
             }
+        } else if (left.length) {
+            result.push(left.shift())
+        } else {
+            result.push(right.shift())
         }
-        return result.concat(left.slice(il)).concat(right.slice(ir));
-        
     }
-    const mergeSort=(items)=> {
-        if (items.length < 2) {
-            return items;
-        }
-        let middle = Math.floor(items.length / 2);
-        let left = items.slice(0, middle);
-        let right = items.slice(middle);
-        return merge(mergeSort(left), mergeSort(right));
-    }
-    console.log(mergeSort(arr));
-    
-};
-mergeSort(arr)
+    return result;
+}

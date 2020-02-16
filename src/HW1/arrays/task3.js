@@ -1,12 +1,15 @@
 "use strict"
 
-let arr=[23, 4, 789, 34, 8,90]
-function minIndex() {
+const minIndex = (arr) => {
     let min = 0;
-    for (let i = 1; i<arr.length; i++) {
-        if (arr[i]<arr[min]) {
-            min = i;
-        }
-    }console.log(min);
+    if (arr.length > 0) {
+        for (let i = 1; i < arr.length; i++) {
+            if (typeof arr[i] !== 'number' || isNaN(arr[i]) == true) {
+                return 'Not all elements are comparable';
+            }
+            if (arr[i] < arr[min]) {
+                min = i;
+            }
+        } return min;
+    } return 'Array is empty'
 }
-minIndex(arr);

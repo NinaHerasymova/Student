@@ -1,7 +1,10 @@
 "use strict"
 
-const distance = (a1, b1, a2, b2) => {
-    let result = Math.sqrt((a1 - a2) * (a1 - a2) + (b1 - b2) * (b1 - b2));
-    console.log(result)
+const distance = (x1, y1, x2, y2) => {
+    if(typeof x1!=='number'||typeof x2!=='number'||typeof y1!=='number'||typeof y2!=='number'||
+    isNaN(x1)==true||isNaN(x2)==true||isNaN(y1)==true||isNaN(y2)==true){
+        return'Invalid type of value';
+    }
+    let result = (Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1))).toFixed(2);
+    return result;
 }
-distance(6, -5, 15, 33);

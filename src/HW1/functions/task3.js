@@ -1,8 +1,16 @@
 "use strict"
 
 const wordsToNumber = (string) => {
+    if(typeof string =='number'||string==Infinity||string==null){
+        return'Invalid type of value'
+    }
     const re = /\s* \s*/;
     let string_arr = string.split(re);
+    let letters=/[0-9]/i;
+    let prov=letters.test(string);
+    if(prov==true||string_arr.length==0){
+        return'Invalid type of value'
+    }
     let first_digit;
     let second_digit;
     let third_digit;
@@ -89,6 +97,8 @@ const wordsToNumber = (string) => {
         default: first_digit = '';
     }
     const result = first_digit + second_digit + third_digit + fourth_digit;
-    console.log(result)
-}
-wordsToNumber("one hundred fourteen")
+    if(result==''){
+        return'Invalid type of value'
+    }
+    return result;
+};

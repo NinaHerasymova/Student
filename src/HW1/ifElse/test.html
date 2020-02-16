@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Test "IfElse"</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
     <script>
@@ -31,22 +31,37 @@
                 assert.equal(ternar(7, 10), 17);
             });
             it("передаем a = null, b = 10", function () {
-                assert.equal(ternar(null, 10), "Invalid type of value");
+                assert.equal(ternar(null, 10), 'Invalid type of value');
             });
             it("передаем a = 6, b = null", function () {
-                assert.equal(ternar(6, null), "Invalid type of value");
+                assert.equal(ternar(6, null), 'Invalid type of value');
             });
             it("передаем a = undefined, b = 10", function () {
-                assert.equal(ternar(undefined, 10), "Invalid type of value");
+                assert.equal(ternar(undefined, 10), 'Invalid type of value');
             });
             it("передаем a = 6, b = undefined", function () {
-                assert.equal(ternar(6, undefined), "Invalid type of value");
+                assert.equal(ternar(6, undefined), 'Invalid type of value');
             });
             it("передаем a = '6', b = 10", function () {
-                assert.equal(ternar('6', 10), "Invalid type of value");
+                assert.equal(ternar('6', 10), 'Invalid type of value');
             });
             it("передаем a = 6, b = '10'", function () {
-                assert.equal(ternar(6, '10'), "Invalid type of value");
+                assert.equal(ternar(6, '10'), 'Invalid type of value');
+            });
+            it("передаем a = NaN, b = 10", function () {
+                assert.equal(ternar(NaN, 10), 'Value is not integer or NaN');
+            });
+            it("передаем a = Infinity, b = 10", function () {
+                assert.equal(ternar(Infinity, 10), 'Value is not integer or NaN');
+            });
+            it("передаем a = 8, b = Infinity", function () {
+                assert.equal(ternar(8, Infinity), Infinity);
+            });
+            it("передаем a = -8, b = 10", function () {
+                assert.equal(ternar(-8, 10), -80);
+            });
+            it("передаем a = 5,2, b = 10", function () {
+                assert.equal(ternar(5.2, 10), 'Value is not integer or NaN');
             });
         });
         describe("axe", function () {
@@ -89,6 +104,27 @@
             it("передаем x = NaN, y = undefined", function () {
                 assert.equal(axe(NaN, undefined), 'Invalid type of value');
             });
+            it("передаем x = 5, y = null", function () {
+                assert.equal(axe(5, null), 'Invalid type of value');
+            });
+            it("передаем x = null, y = 5", function () {
+                assert.equal(axe(null, 5), 'Invalid type of value');
+            });
+            it("передаем x = Infinity, y = 5", function () {
+                assert.equal(axe(Infinity, 5), 'I');
+            });
+            it("передаем x = -Infinity, y = 5", function () {
+                assert.equal(axe(-Infinity, 5), 'II');
+            });
+            it("передаем x = -5, y = -Infinity", function () {
+                assert.equal(axe(-5, -Infinity), 'III');
+            });
+            it("передаем x = 5, y = -Infinity", function () {
+                assert.equal(axe(5, -Infinity), 'IV');
+            });
+            it("передаем x = 5.3, y = -5", function () {
+                assert.equal(axe(5.3, -5), 'IV');
+            });
 
         });
 
@@ -103,20 +139,54 @@
                 assert.equal(max(6, 10, -3), 16);
             });
             it("передаем a = '6', b = 10, c=-3", function () {
-                assert.equal(max('6', 10, -3), "Invalid type of value");
+                assert.equal(max('6', 10, -3), 'Invalid type of value');
             });
-
-
+            it("передаем a = undefined, b = 10, c=-3", function () {
+                assert.equal(max(undefined, 10, -3), 'One of argument is NaN or undefined!!!');
+            });
+            it("передаем a = Infinity, b = 10, c=-3", function () {
+                assert.equal(max(Infinity, 10, -3), 'Infinity');
+            });
+            it("передаем a = -Infinity, b = 10, c=-3", function () {
+                assert.equal(max(-Infinity, 10, -3), 10);
+            });
+            it("передаем a = NaN, b = 10, c=-3", function () {
+                assert.equal(max(NaN, 10, -3), 'One of argument is NaN or undefined!!!');
+            });
+            it("передаем a = null, b = 10, c=-3", function () {
+                assert.equal(max(null, 10, -3), 'Invalid type of value');
+            });
+            it("передаем a = 0, b = 10, c=3", function () {
+                assert.equal(max(0, 10, 3), 13);
+            });
         });
         describe("add", function () {
             it("передаем a = 6, b = 1, c=3", function () {
                 assert.equal(add(6, 1, 3), 21);
             });
             it("передаем a = '1', b = 1, c=1", function () {
-                assert.equal(add('1', 1, 1), "Invalid type of value");
+                assert.equal(add('1', 1, 1), 'Invalid type of value');
             });
             it("передаем a = 0, b = 0, c=0", function () {
-                assert.equal(add(0, 0, 0), "Expressions are equal");
+                assert.equal(add(0, 0, 0), 'Expressions are equal');
+            });
+            it("передаем a = undefined, b = 5, c=2", function () {
+                assert.equal(add(undefined, 5, 2), 'One of argument is NaN or undefined!!!');
+            });
+            it("передаем a = null, b = 5, c=2", function () {
+                assert.equal(add(null, 5, 2), 'Invalid type of value');
+            });
+            it("передаем a = NaN, b = 5, c=2", function () {
+                assert.equal(add(NaN, 5, 2), 'One of argument is NaN or undefined!!!');
+            });
+            it("передаем a = -10, b = 5, c=2", function () {
+                assert.equal(add(-10, 5, 2), 0);
+            });
+            it("передаем a = Infinity, b = 5, c=2", function () {
+                assert.equal(add(Infinity, 5, 2), 'Expressions are equal');
+            });
+            it("передаем a = -Infinity, b = 5, c=2", function () {
+                assert.equal(add(-Infinity, 5, 2), 'Expressions are equal');
             });
         });
         describe("student", function () {
@@ -139,9 +209,27 @@
                 assert.equal(student(11), 'F');
             });
             it("передаем mark = 'ggg'", function () {
-                assert.equal(student('ggg'), "Invalid type of value");
+                assert.equal(student('ggg'), 'Invalid type of value');
             });
-            
+            it("передаем mark = NaN", function () {
+                assert.equal(student(NaN), 'Unreal diapasone');
+            });
+            it("передаем mark = 1000", function () {
+                assert.equal(student(1000), 'Unreal diapasone');
+            });
+            it("передаем mark = null", function () {
+                assert.equal(student(null), 'Invalid type of value');
+            });
+            it("передаем mark = undefined", function () {
+                assert.equal(student(undefined), 'Invalid type of value');
+            });
+            it("передаем mark = Infinity", function () {
+                assert.equal(student(Infinity), 'Unreal diapasone');
+            });
+            it("передаем mark = -26", function () {
+                assert.equal(student(-26), 'Unreal diapasone');
+            });
+
         });
 
 

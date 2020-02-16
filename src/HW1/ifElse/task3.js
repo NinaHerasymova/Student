@@ -1,7 +1,9 @@
 "use strict"
 
 const max = (a, b, c) => {
-    if (typeof a == 'number' & typeof b == 'number' & typeof b == 'number') {
+    if (isNaN(a) || isNaN(b) || isNaN(c)) {
+        return "One of argument is NaN or undefined!!!"
+    } else if (typeof a == 'number' & typeof b == 'number' & typeof c == 'number') {
         let summ = 0;
         if (a > 0) {
             summ = summ + a;
@@ -13,5 +15,5 @@ const max = (a, b, c) => {
             summ = summ + c
         }
         return summ
-    } return "Invalid type of value"
+    } return 'Invalid type of value'
 }

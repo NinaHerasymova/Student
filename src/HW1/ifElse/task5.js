@@ -10,6 +10,7 @@ const student = (rate) => {
             case rate > 60 && rate < 74: mark = 'C'; break;
             case rate > 75 && rate < 89: mark = 'B'; break;
             case rate > 90 && rate <= 100: mark = 'A'; break;
+            default: return 'Unreal diapasone'
         }
         return mark
     } return "Invalid type of value"

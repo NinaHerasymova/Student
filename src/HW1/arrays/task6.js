@@ -1,7 +1,17 @@
 "use strict"
-let arr=[1, 3,-9,56,-562,506,45, 13, 28, 22];
-function reverse(arr){
 
-    console.log(arr.reverse());
+const reverse = (arr) => {
+
+    if (arr.length > 0) {
+        var res = [];
+        var k = 0;
+        for (var i = arr.length - 1; i >= 0; i--)
+        {
+         res[k] = arr[i];
+         k++;
+        }
+        return res;
+    } return 'Array is empty';
+
 }
-reverse(arr)
+console.log(reverse(['-6','', 'null', 'NaN', 'Infinity', '65', '11']))
