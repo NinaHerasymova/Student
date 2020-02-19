@@ -19,19 +19,45 @@
 <body>
     <script src="./script.js"></script>
     <script>
-        describe("sum", function () {
-            it("передаем a = 5, b = 10", function () {
-                assert.equal(sum(5, 10), 15);
+        
+        describe("add", function () {
+            it("pass val1 = 5, val2 = 10", function () {
+                assert.equal(add('5','10'), 15);
             });
-            it("передаем a = 10, b = 4", function () {
-                assert.equal(sub(10, 4), 6);
+            
+        });
+        describe("sub", function () {
+            it("pass val1 = 25, val2 = 8", function () {
+                assert.equal(sub(25, 8), 17);
             });
-            it("передаем a = 12, b = 3", function () {
-                assert.equal(div(12, 3), 4);
+            
+        });
+        describe("mul", function () {
+            it("pass val1 = 5, val2 = 10", function () {
+                assert.equal(mul(5, 10), 50);
             });
-            it("передаем a = 7, b = 4", function () {
-                assert.equal(mul(7, 4), 28);
+            it("pass val1 = 1.5, val2 = 1,8", function () {
+                assert.equal(mul(1.5, 1.8), 2.7);
             });
+            
+        });
+        describe("div", function () {
+            it("pass val1 = 45, val2 = 15", function () {
+                assert.equal(div(45, 15), 3);
+            });
+            it("pass val1 = 10, val2 = 8", function () {
+                assert.equal(div(10, 8), 1.25);
+            });
+            it("pass val1 = 45, val2 = 0", function () {
+                assert.equal(div(45, 0), 'Error');
+            });
+            it("pass val1 = 0, val2 = 0", function () {
+                assert.equal(div(0, 0), 'Error');
+            });
+            it("pass val1 = 0, val2 = 8", function () {
+                assert.equal(div(0, 8), 0);
+            });
+            
         });
 
     </script>
