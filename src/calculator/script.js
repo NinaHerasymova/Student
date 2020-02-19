@@ -10,7 +10,8 @@ let val1 = '';
 let val2 = '';
 let oper = '';
 let isOpClick = false;
-let isDot=false;
+let isDot1=false;
+let isDot2=false;
 let num;
 
 
@@ -22,12 +23,10 @@ for (let i = 0; i < number.length; i++) {
             val1 += num;
             inp.value = val1;
             preview.textContent += num;
-            if(inp.value.indexOf('.') !== -1){
-                isDot=true;
-            }
             return val1;           
         }
         if(isOpClick == true){
+            
         val2 += num;
         inp.value = val2;
         preview.textContent += num;
@@ -39,16 +38,16 @@ for (let i = 0; i < number.length; i++) {
 dot.addEventListener('click', addDot);
 function addDot() {
 
-    if (isDot === false && isOpClick === false) {
+    if (isDot1 === false && isOpClick === false) {
         val1 += this.value;
         inp.value += this.value;
         preview.textContent += this.value;
-        isDot = true;
-    } else if (isDot === true && isOpClick === true) {
+        isDot1 = true;
+    } else if (isDot2 === false && isOpClick === true) {
         val2 += this.value;
         inp.value += this.value;
         preview.textContent += this.value;
-       isDot = false;
+       isDot2 = true;
     }return;
 } 
         
@@ -57,7 +56,7 @@ function addDot() {
 for (let i = 0; i < sign.length; i++) {
     sign[i].addEventListener('click', getValue);
     function getValue() {
-        if (isOpClick == false) {
+        if (isOpClick === false) {            
             oper = this.value;
             preview.textContent += this.value;
             isOpClick = true;
@@ -111,7 +110,8 @@ function clearInp(e) {
     val2 = '';
     oper = '';
     isOpClick = false;
-    isDot = false;
+    isDot1 = false;
+    isDot2 = false;
 }
 
 
