@@ -69,22 +69,22 @@ function getResult() {
         case '+':
             inp.value = add(val1, val2); preview.textContent += '=' + inp.value;
             val1 = inp.value; val2 = ''; isOpClick = false; isDot1 = false;
-            isDot2 = false; console.log(val1, val2); break;
+            isDot2 = false; break;
 
         case '-':
             inp.value = sub(val1, val2); preview.textContent += '=' + inp.value;
             val1 = inp.value; val2 = ''; isOpClick = false; isDot1 = false;
-            isDot2 = false; console.log(val1, val2); break;
+            isDot2 = false; break;
 
         case '*':
             inp.value = mul(val1, val2); preview.textContent += '=' + inp.value; val1 = inp.value; val2 = '';
             isOpClick = false; isDot1 = false;
-            isDot2 = false; console.log(val1, val2); break;
+            isDot2 = false; break;
 
         case '/':
             inp.value = div(val1, val2); preview.textContent += '=' + inp.value; val1 = inp.value; val2 = '';
             isOpClick = false; isDot1 = false;
-            isDot2 = false; console.log(val1, val2); break;
+            isDot2 = false; break;
     }
 }
 
