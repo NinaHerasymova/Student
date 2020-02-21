@@ -24,13 +24,17 @@
             it("pass val1 = 5, val2 = 10", function () {
                 assert.equal(add('5','10'), 15);
             });
-            
+            it("pass val1 = 1.5, val2 = 10", function () {
+                assert.equal(add('1.5','10'), 11.5);
+            });            
         });
         describe("sub", function () {
             it("pass val1 = 25, val2 = 8", function () {
                 assert.equal(sub(25, 8), 17);
             });
-            
+            it("pass val1 = 25.5, val2 = 8.4", function () {
+                assert.equal(sub(25.5, 8.4), 17.1);
+            });            
         });
         describe("mul", function () {
             it("pass val1 = 5, val2 = 10", function () {
@@ -47,6 +51,9 @@
             });
             it("pass val1 = 10, val2 = 8", function () {
                 assert.equal(div(10, 8), 1.25);
+            });
+            it("pass val1 = 10.6, val2 = 8.5", function () {
+                assert.equal(div(10.6, 8.5), 1.2470588235294118);
             });
             it("pass val1 = 45, val2 = 0", function () {
                 assert.equal(div(45, 0), 'Error');
