@@ -7,7 +7,7 @@ let age = document.getElementById('age');
 let input = document.querySelectorAll('.data');
 let button = document.querySelectorAll('.buttons');
 let idArr = [];
-let res=true;
+let isId=true;
 
 id.addEventListener('change',validate);
 function validate(){      
@@ -58,10 +58,10 @@ function updateLi() {
         alert('Some fields are empty!!!');
     } else {
         newId = id.value;
-        res = true;
+        isId = true;
         for (i = 0; i < idArr.length; i++) {
             if (newId == idArr[i]) {
-                res = false;
+                isId = false;
                 let repeat = idArr.indexOf(newId);
                 li[repeat].innerHTML = '';
                 for (i = 0; i < input.length; i++) {
@@ -71,30 +71,28 @@ function updateLi() {
             }
         }
     }
-    if (res == true) {
+    if (isId == true) {
         alert('This id is absent');
     }
-    res = false;
+    isId = false;
 
 }
 del.addEventListener('click', deleteLi);
 function deleteLi() {
-    console.log(idArr)
     newId = id.value;
-    res = false;
+    isId = false;
     for (i = 0; i < idArr.length; i++) {
         if (newId == idArr[i]) {
             let repeat = idArr.indexOf(newId);
             id.value = "";
             li[repeat].remove();
             idArr.splice(repeat,1);
+            isId=true;
         }
-
     }
-    if (res == true) {
+    if (isId == false) {
         alert('This id is absent');
         
     }
-    res = true;
-    console.log(idArr)
+    isId = true;
 }
