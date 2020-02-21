@@ -1,11 +1,13 @@
+*{    
+    user-select: none;
+}
+
 .flex {
     display: flex;
     width: 300px; 
         
 }
-.calculator > :nth-child(2){
-    background-color: #3F4143;
-}
+
 .calculator {
     width: 300px;
     display: flex;
@@ -34,7 +36,7 @@
 }
 #display {
     display: block;
-    height: 80px;
+    height: 90px;
     width: 290px;
     text-align: right;
     background-color: black;    
@@ -46,7 +48,7 @@
     outline: none;
     border: none;
     color: white;
-    font-size: 4em;
+    font-size: 3.5em;
     width: 100%;
     text-align: right;
 }
@@ -54,23 +56,8 @@
     width: 98px;
     padding-left: 27px;
     text-align: start;
-}
-#mult{
-    color: transparent;
-}
-#mult::before{
-    color: white;
-    content: '×';
-    padding-left: 18px;
-}
-#division{
-    color: transparent;
-}
-#division::before{
-    color: white;
-    content: '÷';
-    padding-left: 12px;
-}
-#zero{
     flex: 4.6;
+}
+.clear{
+    flex: 8.3em;
 }
