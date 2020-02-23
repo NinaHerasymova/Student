@@ -62,29 +62,22 @@ for (let i = 0; i < sign.length; i++) {
     }
 }
 
-
+function reset(){
+    preview.textContent += '=' + inp.value;
+    val1 = inp.value; val2 = ''; isOpClick = false; isDot1 = false;
+    isDot2 = false; 
+}
 result.addEventListener('click', getResult);
 function getResult() {
     switch (oper) {
         case '+':
-            inp.value = add(val1, val2); preview.textContent += '=' + inp.value;
-            val1 = inp.value; val2 = ''; isOpClick = false; isDot1 = false;
-            isDot2 = false; break;
-
+            inp.value = add(val1, val2); reset(); break;
         case '-':
-            inp.value = sub(val1, val2); preview.textContent += '=' + inp.value;
-            val1 = inp.value; val2 = ''; isOpClick = false; isDot1 = false;
-            isDot2 = false; break;
-
+            inp.value = sub(val1, val2); reset(); break;
         case '*':
-            inp.value = mul(val1, val2); preview.textContent += '=' + inp.value; val1 = inp.value; val2 = '';
-            isOpClick = false; isDot1 = false;
-            isDot2 = false; break;
-
+            inp.value = mul(val1, val2);reset(); break;
         case '/':
-            inp.value = div(val1, val2); preview.textContent += '=' + inp.value; val1 = inp.value; val2 = '';
-            isOpClick = false; isDot1 = false;
-            isDot2 = false; break;
+            inp.value = div(val1, val2); reset(); break;
     }
 }
 
