@@ -13,4 +13,3 @@ const reverse = (num) => {
         } return "Value is not integer or NaN"
     } return "Invalid type of value"
 }
-console.log(reverse(-12853))

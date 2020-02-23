@@ -8,6 +8,7 @@ let input = document.querySelectorAll('.data');
 let button = document.querySelectorAll('.buttons');
 let idArr = [];
 let isId=true;
+let newId;
 
 id.addEventListener('change',validate);
 function validate(){      
@@ -29,7 +30,7 @@ function validate(){
 
 create.addEventListener('click', makeLi);
 function makeLi() {
-    newId = id.value;
+   newId = id.value;
     for (i = 0; i < idArr.length; i++) {
         if (newId == idArr[i]) {
             alert('This id already exist!');
