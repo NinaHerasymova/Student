@@ -6,94 +6,104 @@ let lastname = document.getElementById('lastname');
 let age = document.getElementById('age');
 let input = document.querySelectorAll('.data');
 let button = document.querySelectorAll('.buttons');
-let idArr = [];
-let isId=true;
-let newId;
+let create = document.getElementById('create');
+let read = document.getElementById('read');
+let update = document.getElementById('update');
+let del = document.getElementById('del');
+let state = [];
+//let state = localStorage.getItem('person_data') ? JSON.parse(localStorage.getItem('person_data')) : []
+let data = JSON.parse(localStorage.getItem('person_data'));
 
-id.addEventListener('change',validate);
-function validate(){      
-    let regex= /\D/g;
-    if(regex.test(this.value)){
-        id.value='';
+let Person = function (id, firstname, lastname, age) {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.age = age;
+}
+
+id.addEventListener('change', validate);
+function validate() {
+    let regex = /\D/g;
+    if (regex.test(this.value)) {
+        id.value = '';
         alert('Please, enter only digits!!!')
     }
 }
 
-age.addEventListener('change',validate);
-function validate(){     
-    let regex= /\D/g;
-    if(regex.test(this.value)){
-        age.value='';
-        alert('Please, enter only digits!!!')
-    }
-}
+age.addEventListener('change', validate);
 
-create.addEventListener('click', makeLi);
-function makeLi() {
-   newId = id.value;
-    for (i = 0; i < idArr.length; i++) {
-        if (newId == idArr[i]) {
+
+create.addEventListener('click', createPerson);
+function createPerson() {
+    for (i = 0; i < state.length; i++) {
+        if (id.value == state[i].id) {
             alert('This id already exist!');
             for (i = 0; i < input.length; i++) {
-                input[0].value = "";
-
+                input[i].value = "";
             }
-        };
-    };
-
-    if (id.value == '' || firstname.value == '' || lastname.value == '' || age.value == '') {
-        alert('Some fields are empty!!!');
-         } else {
-        idArr.push(input[0].value);
-        let newLi = document.createElement('li');
-        for (i = 0; i < input.length; i++) {
-            newLi.innerHTML += `<div>${input[i].value}</div>`;
-            input[i].value = "";
-            list.append(newLi);
         }
     }
+    if (id.value == '' || firstname.value == '' || lastname.value == '' || age.value == '') {
+        alert('Some fields are empty!!!');
+    } else {        
+        let person = new Person(id.value, firstname.value, lastname.value, age.value);
+        person.id = id.value;
+        person.firstname = firstname.value;
+        person.lastname = lastname.value;
+        person.age = age.value;
+        state.push(person);
+        for (i = 0; i < input.length; i++) {
+            input[i].value = "";
+        }
+        localStorage.setItem('person_data', JSON.stringify(state));
+
+        let newLi = document.createElement('li');
+        newLi.innerHTML += `<div>${person.id}</div><div>${person.firstname}</div><div>${person.lastname}</div><div>${person.age}</div>`;
+        list.append(newLi);
+    }
 }
-update.addEventListener('click', updateLi);
-function updateLi() {
+
+update.addEventListener('click', updatePerson);
+function updatePerson() {
     if (id.value == '' || firstname.value == '' || lastname.value == '' || age.value == '') {
         alert('Some fields are empty!!!');
     } else {
-        newId = id.value;
-        isId = true;
-        for (i = 0; i < idArr.length; i++) {
-            if (newId == idArr[i]) {
-                isId = false;
-                let repeat = idArr.indexOf(newId);
-                li[repeat].innerHTML = '';
-                for (i = 0; i < input.length; i++) {
-                    li[repeat].innerHTML += `<div>${input[i].value}</div>`;
-                    input[i].value = "";
-                }
-            }
-        }
+        for (i = 0; i < state.length; i++) {
+            if (id.value == state[i].id) {
+                state[i].firstname = firstname.value;
+                state[i].lastname = lastname.value;
+                state[i].age = age.value;
+                li[i].innerHTML = `<div>${state[i].id}</div><div>${state[i].firstname}</div><div>${state[i].lastname}</div><div>${state[i].age}</div>`;
+            }      
+        }        
     }
-    if (isId == true) {
-        alert('This id is absent');
-    }
-    isId = false;
+    
 
+    for (i = 0; i < input.length; i++) {
+        input[i].value = "";
+    }
+
+    localStorage.setItem('person_data', JSON.stringify(state));
 }
-del.addEventListener('click', deleteLi);
-function deleteLi() {
-    newId = id.value;
-    isId = false;
-    for (i = 0; i < idArr.length; i++) {
-        if (newId == idArr[i]) {
-            let repeat = idArr.indexOf(newId);
+
+del.addEventListener('click', deletePerson);
+function deletePerson() {
+    for (i = 0; i < state.length; i++) {
+        if (id.value == state[i].id) {
+            state.splice(i, 1)
+            li[i].remove();
             id.value = "";
-            li[repeat].remove();
-            idArr.splice(repeat,1);
-            isId=true;
         }
     }
-    if (isId == false) {
-        alert('This id is absent');
-        
+    localStorage.setItem('person_data', JSON.stringify(state));
+}
+
+read.addEventListener('click', readData);
+function readData() {
+    for (let i = 0; i < data.length; i++) {
+        let newLi = document.createElement('li');
+        newLi.innerHTML += `<div>${data[i].id}</div><div>${data[i].firstname}</div><div>${data[i].lastname}</div><div>${data[i].age}</div>`;
+        list.append(newLi);
     }
-    isId = true;
+    state=data;
 }
