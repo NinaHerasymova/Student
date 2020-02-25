@@ -5,7 +5,7 @@ function AList(elem) {
 }
 AList.prototype.init = function () {
     let index = 0;
-    while (this.defaultArray[index]) {
+    while (this.defaultArray[index] !== undefined) {
         this.array[index] = this.defaultArray[index];
         index++;
     }
@@ -16,7 +16,7 @@ AList.prototype.init = function () {
 
 AList.prototype.size = function () {
     let index = 0;
-    while (this.array[index]) {
+    while (this.array[index] !== undefined) {
         index++
     }
     return index;
@@ -92,7 +92,7 @@ AList.prototype.get = function (index) {
 AList.prototype.set = function (index, value) {
     let put = [];
     if (index > this.size()) {
-        return undefined;
+        return;
     }
     for (let i = 0; i < this.size(); i++) {
         if (i == index) {
@@ -116,7 +116,8 @@ AList.prototype.toString = function () {
 
 
 AList.prototype.clear = function () {
-    return this.defaultArray;
+    this.init();
+    return this.array;
 }
 
 AList.prototype.min = function () {
