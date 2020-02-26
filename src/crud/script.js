@@ -11,7 +11,6 @@ let read = document.getElementById('read');
 let update = document.getElementById('update');
 let del = document.getElementById('del');
 let state = [];
-//let state = localStorage.getItem('person_data') ? JSON.parse(localStorage.getItem('person_data')) : []
 let data = JSON.parse(localStorage.getItem('person_data'));
 
 let Person = function (id, firstname, lastname, age) {
