@@ -30,6 +30,10 @@
             it("add element to the start", function () {
                 assert.deepEqual(arr_start.addStart(100), 9);
             });
+            it("add element to the start", function () {
+                arr_start.clear();
+                assert.deepEqual(arr_start.addStart(4), 10);
+            });
         });
                      
         describe(".addEnd", function () {
@@ -37,11 +41,18 @@
             it("add element to the end", function () {
                 assert.deepEqual(arr_end.addEnd(17), 9);
             });
+            it("add element to the end", function () {
+                arr_end.clear();
+                assert.deepEqual(arr_end.addEnd(25), 10);
+            });
         });
         describe(".delStart", function () {
             const arr_delStart = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
             it("delete element from the start", function () {
                 assert.deepEqual(arr_delStart.delStart(), 2);
+            });
+            it("delete element from the start", function () {
+                assert.deepEqual(arr_delStart.delStart(), 4);
             });
         });
         describe(".delEnd", function () {
@@ -49,11 +60,18 @@
             it("delete element from the end", function () {
                 assert.deepEqual(arr_delEnd.delEnd(), 14);
             });
+            it("delete element from the end", function () {
+                assert.deepEqual(arr_delEnd.delEnd(), 2);
+            });
         });
         describe(".delPosition", function () {
             const arr_delPos = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
             it("delete element by index", function () {
                 assert.deepEqual(arr_delPos.delPosition(3), 6);
+            });
+            it("delete element by index", function () {
+                arr_delPos.clear();
+                assert.deepEqual(arr_delPos.delPosition(4), 10);
             });
         });
         describe(".get", function () {
@@ -61,65 +79,108 @@
             it("get element by index", function () {
                 assert.deepEqual(arr_get.get(5), 1);
             });
+            it("get element by index", function () {
+                assert.deepEqual(arr_get.get(3), 6);
+            });
         });
         describe(".set", function () {
             const arr_set = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
             it("set element by index", function () {
                 assert.deepEqual(arr_set.set(5, 255),[2, 4, 8, 6, 10, 255, 2, 14 ]);
             });
+            it("set element by index", function () {
+                assert.deepEqual(arr_set.set(2, 154),[2, 4, 154, 6, 10, 255, 2, 14 ]);
+            });
         });
         describe(".toString", function () {
+            it("transform into type 'string'", function () {                
             const arr_string = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
-            it("transform into type 'string'", function () {
                 assert.deepEqual(arr_string.toString(), '2486101214');
+            });
+            it("transform into type 'string'", function () {                
+            const arr_string = new AList([4,23, 4, 78, 869, 34]);
+                assert.deepEqual(arr_string.toString(), '42347886934');
             });
         });
         describe(".clear", function () {
             const arr_clear = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
             it("clear array", function () {
+                arr_clear.delEnd()
+                assert.deepEqual(arr_clear.clear(), [2, 4, 8, 6, 10, 1, 2, 14]);
+            });
+            it("clear array", function () {
                 assert.deepEqual(arr_clear.clear(), [2, 4, 8, 6, 10, 1, 2, 14]);
             });
         });
-        describe(".min", function () {
-            const arr_min = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+        describe(".min", function () {            
             it("find min element of array", function () {
-                assert.deepEqual(arr_min.min(), 1);
+                const arr_min = new AList([2, -4, 8, 6, 10, 1, 2, 14]);
+                assert.deepEqual(arr_min.min(), -4);
+            });
+            it("find min element of array", function () {
+                const arr_min = new AList([2, 4, 8, 6, -10, 1, 2, 14]);
+                assert.deepEqual(arr_min.min(), -10);
             });
         });
-        describe(".max", function () {
-            const arr_max = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+        describe(".max", function () {           
             it("find max element of array", function () {
-                assert.deepEqual(arr_max.max(), 14);
+                const arr_max = new AList([2, 4, 8, 6, 510, 1, 2, 14]);
+                assert.deepEqual(arr_max.max(), 510);
+            });
+            it("find max element of array", function () {
+                const arr_max = new AList([2, 4, 8, 6, 10, 1, 1002, 14]);
+                assert.deepEqual(arr_max.max(), 1002);
             });
         });
         describe(".sort", function () {
+            it("sorting array", function () {                
             const arr_sort = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
-            it("sorting array", function () {
                 assert.deepEqual(arr_sort.sort(), [1,2,2,4,6,8,10,14]);
             });
+            it("sorting array", function () {                
+            const arr_sort = new AList([2, 4, -8, 6, 10, 1, 2, -14]);
+                assert.deepEqual(arr_sort.sort(), [-14,-8,1,2,2,4,6,10]);
+            });
         });
-        describe(".maxIndex", function () {
-            const arr_maxIn = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+        describe(".maxIndex", function () {            
             it("index of max element", function () {
+                const arr_maxIn = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
                 assert.deepEqual(arr_maxIn.maxIndex(), 7);
             });
-        });
-        describe(".minIndex", function () {
-            const arr_minIn = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
-            it("index of min element", function () {
-                assert.deepEqual(arr_minIn.minIndex(), 5);
+            it("index of max element", function () {
+                const arr_maxIn = new AList([2, 4, 8, 586, 10, -1, 2, 14]);
+                assert.deepEqual(arr_maxIn.maxIndex(), 3);
             });
         });
-        describe(".reverse", function () {
-            const arr_reverse = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+        describe(".minIndex", function () {            
+            it("index of min element", function () {
+                const arr_minIn = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+                assert.deepEqual(arr_minIn.minIndex(), 5);
+            });
+            it("index of min element", function () {
+                const arr_minIn = new AList([2, 4, -8, 6, 10, 1, -582, 14]);
+                assert.deepEqual(arr_minIn.minIndex(), 6);
+            });
+        });
+        describe(".reverse", function () {            
             it("reversing array", function () {
+                const arr_reverse = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
                 assert.deepEqual(arr_reverse.reverse(), [14, 2, 1, 10, 6, 8, 4,2]);
+            });
+            it("reversing array", function () {
+                const arr_reverse = new AList([22, 38, 7, 10, 15, 235, 14]);
+                assert.deepEqual(arr_reverse.reverse(), [14, 235,15,10,7,38,22]);
             });
         });
         describe(".halfReverse", function () {
-            const arr_halfReverse = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+            
             it("replace and reverse halves", function () {
+                const arr_halfReverse = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
                 assert.deepEqual(arr_halfReverse.halfReverse(), [6,8,4,2,14,2,1,10]);
+            });
+            it("replace and reverse halves", function () {
+                const arr_halfReverse = new AList([23, 5, 784, 96, 52, 4, 8]);
+                assert.deepEqual(arr_halfReverse.halfReverse(), [784,5,23,96,8,4,52]);
             });
         });
         
