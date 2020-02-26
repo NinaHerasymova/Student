@@ -219,21 +219,4 @@ AList.prototype.halfReverse = function () {
 }
 
 
-const arr_size = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_start = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_end = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_delStart = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_delEnd = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_delPos = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_get = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_set = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_string = new AList([120, 8, 22, 344, 86, 10, 114]);
-const arr_clear = new AList([2, 4, 6, 8, 10, 12, 14]);
-const arr_min = new AList([-120, -8, 22, 344, 86, -10, 114]);
-const arr_max = new AList([120, -8, 22, 344, 86, -10, 114]);
-const arr_sort = new AList([120, -8, 22, 344, 86, -10, 114]);
-const arr_maxIn = new AList([120, -8, 22, 344, 86, -10, 114]);
-const arr_minIn = new AList([120, -8, 22, 344, 86, -10, 114]);
-const arr_reverse = new AList([120, -8, 22, 344, 86, -10, 114]);
-const arr_halfReverse = new AList([1, 2, 3, 4, 5, 6, 7]);
 
