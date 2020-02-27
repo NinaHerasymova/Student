@@ -2,7 +2,11 @@ function AList(elem) {
     this.defaultArray = elem;
     this.array = [];
     this.init();
-}
+};  
+
+
+//------Методы----------////
+
 AList.prototype.init = function () {
     let index = 0;
     while (this.defaultArray[index] !== undefined) {
@@ -10,9 +14,8 @@ AList.prototype.init = function () {
         index++;
     }
     return this.array;
-}
+};
 
-//------Методы----------////
 
 AList.prototype.size = function () {
     let index = 0;
@@ -20,7 +23,7 @@ AList.prototype.size = function () {
         index++
     }
     return index;
-}
+};
 
 AList.prototype.addStart = function (element) {
     for (let i = this.size() - 1; i >= 0; i--) {
@@ -28,13 +31,13 @@ AList.prototype.addStart = function (element) {
     }
     this.array[0] = element;
     return this.size();
-}
+};
 
 
 AList.prototype.addEnd = function (element) {
     this.array[this.size()] = element;
     return this.size();
-}
+};
 
 
 AList.prototype.delStart = function () {
@@ -46,7 +49,7 @@ AList.prototype.delStart = function () {
     }
     this.array = subArr;
     return del;
-}
+};
 
 
 AList.prototype.delEnd = function () {
@@ -58,7 +61,7 @@ AList.prototype.delEnd = function () {
     }
     this.array = subArr;
     return del;
-}
+};
 
 
 AList.prototype.delPosition = function (element) {
@@ -74,7 +77,7 @@ AList.prototype.delPosition = function (element) {
     }
     this.array = subArr;
     return del;
-}
+};
 
 
 AList.prototype.get = function (index) {
@@ -86,7 +89,7 @@ AList.prototype.get = function (index) {
         }
 
     }
-}
+};
 
 
 AList.prototype.set = function (index, value) {
@@ -103,7 +106,7 @@ AList.prototype.set = function (index, value) {
     }
     this.array = put;
     return this.array;
-}
+};
 
 
 AList.prototype.toString = function () {
@@ -112,13 +115,13 @@ AList.prototype.toString = function () {
         str += this.array[i];
     }
     return str;
-}
+};
 
 
 AList.prototype.clear = function () {
     this.init();
     return this.array;
-}
+};
 
 AList.prototype.min = function () {
     let minEl = this.array[0];
@@ -128,7 +131,7 @@ AList.prototype.min = function () {
         }
     }
     return minEl;
-}
+};
 
 
 AList.prototype.max = function () {
@@ -139,7 +142,7 @@ AList.prototype.max = function () {
         }
     }
     return maxEl;
-}
+};
 
 
 AList.prototype.sort = function () {
@@ -153,7 +156,7 @@ AList.prototype.sort = function () {
         }
     }
     return this.array;
-}
+};
 
 AList.prototype.maxIndex = function () {
     let maxIn = 0;
@@ -163,7 +166,8 @@ AList.prototype.maxIndex = function () {
         }
     }
     return maxIn;
-}
+};
+
 AList.prototype.minIndex = function () {
     let minIn = 0;
     for (let i = 0; i < this.size(); i++) {
@@ -172,7 +176,7 @@ AList.prototype.minIndex = function () {
         }
     }
     return minIn;
-}
+};
 
 
 AList.prototype.reverse = function () {
@@ -183,7 +187,7 @@ AList.prototype.reverse = function () {
         k++;
     }
     return res;
-}
+};
 
 
 AList.prototype.halfReverse = function () {
@@ -216,7 +220,24 @@ AList.prototype.halfReverse = function () {
     }
     this.array = subArr;
     return this.array;
-}
+};
 
-
+const arr_pos = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
+AList.prototype.addPosition = function (index, value) {
+    let put = [];
+    if (index > this.size()) {
+        return;
+    }
+    for (let i = 0; i < this.size()+1; i++) {
+        if (i == index) {
+            put[i] = value;
+                }else if(i<index){
+            put[i]=this.array[i];
+        }else{
+            put[i]=this.array[i-1];
+        }
+    }
+    this.array = put;
+    return this.array;
+  }
 
