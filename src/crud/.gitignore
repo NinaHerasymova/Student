@@ -1,4 +1,3 @@
-# IntelliJ project files
 .idea
 *.iml
 out
@@ -6,4 +5,5 @@ gen
 build
 node_modules
 .DS_Store
-readme
+.nyc_output
+coverage
