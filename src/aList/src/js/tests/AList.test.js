@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+const { AList}  = require('../AList');
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
-    <script>
-        mocha.setup('bdd');
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
-    <script>
-        var assert = chai.assert;
-    </script>
-    <script src="./alist.js"></script>
-</head>
 
-<body>
-    <script>
         describe(".init", function () {
             const arr = new AList([2, 4, 8, 6, 10, 1, 2, 14]);
             it("init arr", function () {
@@ -205,16 +187,4 @@
             });
         });
         
-    </script>
-    <div id="mocha"></div>
-    <script>
-        mocha.run();
-    </script>
-</body>
-
-</html>
-</body>
-
-</html>
-
 
