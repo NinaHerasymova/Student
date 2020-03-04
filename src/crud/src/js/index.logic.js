@@ -1,3 +1,10 @@
+const Person = function(id, firstname, lastname, age) {
+  this.id = id
+  this.firstname = firstname
+  this.lastname = lastname
+  this.age = age
+}
+
 function createPerson() {
   person = new Person(id.value, firstname.value, lastname.value, age.value)
   person.id = id.value
@@ -5,9 +12,10 @@ function createPerson() {
   person.lastname = lastname.value
   person.age = age.value
   state.push(person)
+  return state
 }
 
-function updatePerson(state) {
+function updatePerson() {
   for (let i = 0; i < state.length; i++) {
     if (id.value === state[i].id) {
       state[i].firstname = firstname.value
@@ -15,6 +23,7 @@ function updatePerson(state) {
       state[i].age = age.value
     }
   }
+  return state
 }
 
 function deletePerson(state) {
@@ -23,6 +32,7 @@ function deletePerson(state) {
       state.splice(i, 1)
     }
   }
+  return state
 }
 
 module.exports = updatePerson

@@ -1,3 +1,7 @@
+const createPerson = require('../index.logic')
+const updatePerson = require('../index.logic')
+const deletePerson = require('../index.logic')
+
 const list = document.getElementById('list')
 const li = document.getElementById('list').children
 const id = document.getElementById('id')
@@ -29,22 +33,6 @@ function validate() {
 }
 id.addEventListener('change', validate)
 age.addEventListener('change', validate)
-
-const Person = function(id, firstname, lastname, age) {
-  this.id = id
-  this.firstname = firstname
-  this.lastname = lastname
-  this.age = age
-}
-
-function createPerson() {
-  person = new Person(id.value, firstname.value, lastname.value, age.value)
-  person.id = id.value
-  person.firstname = firstname.value
-  person.lastname = lastname.value
-  person.age = age.value
-  state.push(person)
-}
 
 function render() {
   list.innerHTML = ''
@@ -82,16 +70,6 @@ create.addEventListener('click', function() {
   }
 })
 
-function updatePerson() {
-  for (let i = 0; i < state.length; i++) {
-    if (id.value === state[i].id) {
-      state[i].firstname = firstname.value
-      state[i].lastname = lastname.value
-      state[i].age = age.value
-    }
-  }
-}
-
 update.addEventListener('click', function() {
   if (
     id.value === '' ||
@@ -105,14 +83,6 @@ update.addEventListener('click', function() {
     sync()
   }
 })
-
-function deletePerson() {
-  for (let i = 0; i < state.length; i++) {
-    if (id.value === state[i].id) {
-      state.splice(i, 1)
-    }
-  }
-}
 
 del.addEventListener('click', function() {
   for (let i = 0; i < state.length; i++) {
