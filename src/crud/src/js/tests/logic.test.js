@@ -5,7 +5,7 @@ const deletePerson = require('../index.logic')
 describe('createPerson', function() {
   it('create', function() {
     createPerson('1', 'd', 'd', '2')
-    expect(state[0]).to.deep.contain({
+    expect(state[0]).to.equal({
       id: '1',
       firstname: 'd',
       lastname: 'd',
@@ -14,7 +14,7 @@ describe('createPerson', function() {
   })
   it('create', function() {
     createPerson('2', 'gg', 'd', '6')
-    expect(state[1]).to.deep.contain({
+    expect(state[1]).to.equal({
       id: 2,
       firstname: 'gg',
       lastname: 'd',
@@ -25,7 +25,7 @@ describe('createPerson', function() {
 describe('updatePerson', function() {
   it('update', function() {
     updatePerson('1', 'c', 'c', '3')
-    expect(state[0]).to.deep.contain({
+    expect(state[0]).to.equal({
       id: '1',
       firstname: 'c',
       lastname: 'c',
@@ -34,7 +34,7 @@ describe('updatePerson', function() {
   })
   it('update', function() {
     updatePerson('2', 'bb', 'bb', '65')
-    expect(state[1]).to.deep.contain({
+    expect(state[1]).to.equal({
       id: '2',
       firstname: 'bb',
       lastname: 'bb',
