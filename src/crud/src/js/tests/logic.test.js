@@ -1,6 +1,6 @@
-const createPerson = require('../index.logic').createPerson
-const deletePerson = require('../index.logic').deletePerson
-const updatePerson = require('../index.logic').updatePerson
+const { createPerson } = require('../index.logic')
+const { deletePerson } = require('../index.logic')
+const { updatePerson } = require('../index.logic')
 
 describe('createPerson', function() {
   it('create', function() {

@@ -18,6 +18,7 @@ module.exports = {
     benchmark: true,
     expect: true,
     suite: true,
+    assert: true,
   },
   rules: {
     'prettier/prettier': [

@@ -1,4 +1,4 @@
-let state = []
+const state = []
 
 function createPerson(id, firstname, lastname, age) {
   const Person = function() {

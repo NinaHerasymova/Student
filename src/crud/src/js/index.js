@@ -1,14 +1,14 @@
-const createPerson = require('../index.logic')
-const updatePerson = require('../index.logic')
-const deletePerson = require('../index.logic')
-const state = require('../index.logic')
+const createPerson = require('./index.logic')
+const updatePerson = require('./index.logic')
+const deletePerson = require('./index.logic')
+let state = require('./index.logic')
 
 const list = document.getElementById('list')
 const input = document.querySelectorAll('.data')
-let id = document.getElementById('id')
-let firstname = document.getElementById('firstname')
-let lastname = document.getElementById('lastname')
-let age = document.getElementById('age')
+const id = document.getElementById('id')
+const firstname = document.getElementById('firstname')
+const lastname = document.getElementById('lastname')
+const age = document.getElementById('age')
 const create = document.getElementById('create')
 const read = document.getElementById('read')
 const update = document.getElementById('update')
@@ -24,8 +24,8 @@ function sync() {
 function validate() {
   const regex = /\D/g
   if (regex.test(this.value)) {
-    id = ''
-    age = ''
+    id.value = ''
+    age.value = ''
     alert('Please, enter only digits!!!')
   }
 }
@@ -62,7 +62,7 @@ create.addEventListener('click', function() {
       alert('This id is already exist!!!')
       isId = false
     } else {
-      createPerson()
+      createPerson(id.value, firstname.value, lastname.value, age.value)
       sync()
     }
   }
@@ -77,7 +77,7 @@ update.addEventListener('click', function() {
   ) {
     alert('Some fields are empty!!!')
   } else {
-    updatePerson()
+    updatePerson(id.value, firstname.value, lastname.value, age.value)
     sync()
   }
 })
@@ -92,7 +92,7 @@ del.addEventListener('click', function() {
   if (isId === false) {
     alert('This id is absent')
   }
-  deletePerson()
+  deletePerson(id.value)
   sync()
   isId = false
 })
