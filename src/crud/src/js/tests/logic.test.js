@@ -1,52 +1,57 @@
-const createPerson = require('../index.logic')
-const updatePerson = require('../index.logic')
-const deletePerson = require('../index.logic')
+const createPerson = require('../index.logic').createPerson
+const deletePerson = require('../index.logic').deletePerson
+const updatePerson = require('../index.logic').updatePerson
 
 describe('createPerson', function() {
   it('create', function() {
-    createPerson('1', 'd', 'd', '2')
-    expect(state[0]).to.equal({
-      id: '1',
-      firstname: 'd',
-      lastname: 'd',
-      age: '2',
-    })
+    assert.equal(createPerson('78', 'xxxx', 'xxxx', '1').length, 1)
   })
   it('create', function() {
-    createPerson('2', 'gg', 'd', '6')
-    expect(state[1]).to.equal({
-      id: 2,
-      firstname: 'gg',
-      lastname: 'd',
-      age: '6',
-    })
+    assert.equal(createPerson('25', 'aaaa', 'aaaa', '7').length, 2)
+  })
+  it('create', function() {
+    assert.equal(createPerson('5', 'ttt', 'uuu', '12').length, 3)
+  })
+  it('create', function() {
+    assert.equal(createPerson('35', 'ttt', 'uuu', '12').length, 4)
   })
 })
+
 describe('updatePerson', function() {
   it('update', function() {
-    updatePerson('1', 'c', 'c', '3')
-    expect(state[0]).to.equal({
-      id: '1',
-      firstname: 'c',
-      lastname: 'c',
-      age: '3',
+    assert.deepEqual(updatePerson('78', 'aaaa', 'bbbb', '78'), {
+      id: '78',
+      firstname: 'aaaa',
+      lastname: 'bbbb',
+      age: '78',
     })
   })
   it('update', function() {
-    updatePerson('2', 'bb', 'bb', '65')
-    expect(state[1]).to.equal({
-      id: '2',
-      firstname: 'bb',
-      lastname: 'bb',
-      age: '65',
+    assert.deepEqual(updatePerson('35', 'aaaa', 'bbbb', '78'), {
+      id: '35',
+      firstname: 'aaaa',
+      lastname: 'bbbb',
+      age: '78',
+    })
+  })
+  it('update', function() {
+    assert.deepEqual(updatePerson('78', 'q', 'w', '20'), {
+      id: '78',
+      firstname: 'q',
+      lastname: 'w',
+      age: '20',
     })
   })
 })
+
 describe('deletePerson', function() {
   it('delete', function() {
-    deletePerson('1')
-    expect(state.length === 1)
-    deletePerson('2')
-    expect(state.length === 0)
+    assert.equal(deletePerson('78').length, 3)
+  })
+  it('delete', function() {
+    assert.equal(deletePerson('5').length, 2)
+  })
+  it('delete', function() {
+    assert.equal(deletePerson('25').length, 1)
   })
 })

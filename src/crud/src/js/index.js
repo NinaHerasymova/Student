@@ -1,21 +1,19 @@
 const createPerson = require('../index.logic')
 const updatePerson = require('../index.logic')
 const deletePerson = require('../index.logic')
+const state = require('../index.logic')
 
 const list = document.getElementById('list')
-const li = document.getElementById('list').children
-const id = document.getElementById('id')
-const firstname = document.getElementById('firstname')
-const lastname = document.getElementById('lastname')
-const age = document.getElementById('age')
 const input = document.querySelectorAll('.data')
+let id = document.getElementById('id')
+let firstname = document.getElementById('firstname')
+let lastname = document.getElementById('lastname')
+let age = document.getElementById('age')
 const create = document.getElementById('create')
 const read = document.getElementById('read')
 const update = document.getElementById('update')
 const del = document.getElementById('del')
-let state = []
 const data = JSON.parse(localStorage.getItem('person_data'))
-let person
 let isId = false
 
 function sync() {
@@ -26,13 +24,13 @@ function sync() {
 function validate() {
   const regex = /\D/g
   if (regex.test(this.value)) {
-    id.value = ''
-    age.value = ''
+    id = ''
+    age = ''
     alert('Please, enter only digits!!!')
   }
 }
-id.addEventListener('change', validate)
-age.addEventListener('change', validate)
+input[0].addEventListener('change', validate)
+input[3].addEventListener('change', validate)
 
 function render() {
   list.innerHTML = ''
