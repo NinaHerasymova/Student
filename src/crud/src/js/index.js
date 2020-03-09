@@ -1,103 +1,286 @@
-const createPerson = require('./index.logic')
-const updatePerson = require('./index.logic')
-const deletePerson = require('./index.logic')
-let state = require('./index.logic')
+// const createPerson = require('./index.logic')
+// const updatePerson = require('./index.logic')
+// const deletePerson = require('./index.logic')
+// let state = require('./index.logic')
 
-const list = document.getElementById('list')
-const input = document.querySelectorAll('.data')
-const id = document.getElementById('id')
-const firstname = document.getElementById('firstname')
-const lastname = document.getElementById('lastname')
-const age = document.getElementById('age')
-const create = document.getElementById('create')
-const read = document.getElementById('read')
-const update = document.getElementById('update')
-const del = document.getElementById('del')
-const data = JSON.parse(localStorage.getItem('person_data'))
-let isId = false
+const list = document.querySelector('.list');
+const input = document.querySelectorAll('.inputs__userdata');
+const id = document.querySelector('.id');
+const local = document.querySelector('.local');
+const indexed = document.querySelector('.indexed');
+const firstname = document.querySelector('.firstname');
+const lastname = document.querySelector('.lastname');
+const age = document.querySelector('.age');
+const email = document.querySelector('.email');
+const phone = document.querySelector('.phone');
+const create = document.querySelector('.create');
+const update = document.querySelector('.update');
+const del = document.querySelector('.del');
+const data = JSON.parse(localStorage.getItem('person_data'));
+let isId = false;
+let isIndexedDb = false;
+
+let state = [];
+let store;
+let persons;
+
+//---working with indexeddb---///
+let db;
+let dbReq = indexedDB.open('myDB', 1);
+dbReq.onupgradeneeded = event => {
+  db = event.target.result;
+  persons = db.createObjectStore('persons', { keyPath: 'id' });
+};
+dbReq.onsuccess = event => {
+  db = event.target.result;
+};
+dbReq.onerror = event => {
+  alert('error opening database ' + event.target.errorCode);
+};
+
+function addIndexDb(db, id, firstname, lastname, age, email, phone) {
+  let tx = db.transaction(['persons'], 'readwrite');
+  store = tx.objectStore('persons');
+  const Person = function() {
+    this.id = id.value;
+    this.firstname = firstname.value;
+    this.lastname = lastname.value;
+    this.age = age.value;
+    this.email = email.value;
+    this.phone = phone.value;
+  };
+  let personInd = new Person();
+  store.add(personInd);
+  tx.oncomplete = () => {
+    console.log('stored note!');
+  };
+  tx.onerror = event => {
+    alert('error storing note ' + event.target.errorCode);
+  };
+}
+
+function updateIndexDb(id) {
+  let tx = db.transaction(['persons'], 'readonly');
+  let store = tx.objectStore('persons');
+  let req = store.get(id.value);
+  req.onsuccess = event => {
+    let gotten = event.target.result;
+    if (gotten) {
+      gotten.firstname = firstname.value;
+      gotten.lastname = lastname.value;
+      gotten.age = age.value;
+      gotten.email = email.value;
+      gotten.phone = phone.value;
+    } else {
+      console.log('note 1 not found');
+    }
+    var request = db
+      .transaction(['persons'], 'readwrite')
+      .objectStore('persons')
+      .delete(id.value);
+    request.onsuccess = function(event) {
+      // It's gone!
+    };
+    let tx = db.transaction(['persons'], 'readwrite');
+    store = tx.objectStore('persons');
+    store.add(gotten);
+    tx.oncomplete = () => {
+      console.log('stored note!');
+    };
+    tx.onerror = event => {
+      alert('error storing note ' + event.target.errorCode);
+    };
+  };
+}
+
+function delIndexDb(id) {
+  var request = db
+    .transaction(['persons'], 'readwrite')
+    .objectStore('persons')
+    .delete(id.value);
+  console.log('delin');
+  request.onsuccess = function(event) {
+    // It's gone!
+  };
+}
+
+function renderIndexDb(db) {
+  let tx = db.transaction(['persons'], 'readonly');
+  let store = tx.objectStore('persons');
+  let req = store.openCursor();
+  let allPersons = [];
+  req.onsuccess = event => {
+    let cursor = event.target.result;
+    if (cursor != null) {
+      allPersons.push(cursor.value);
+      cursor.continue();
+    } else {
+      list.innerHTML = '';
+      for (let i = 0; i < allPersons.length; i++) {
+        const newLi = document.createElement('li');
+        newLi.innerHTML = `<div class="div">${allPersons[i].id}</div><div class="div">${allPersons[i].firstname}</div><div class="div">${allPersons[i].lastname}</div><div class="div">${allPersons[i].age}</div><div class="div">${allPersons[i].email}</div><div class="div">${allPersons[i].phone}</div>`;
+        newLi.className = 'li';
+        list.append(newLi);
+      }
+    }
+  };
+  req.onerror = event => {
+    alert('error in cursor request ' + event.target.errorCode);
+  };
+}
+/////////////////////////////
+function createPerson(id, firstname, lastname, age, email, phone) {
+  const Person = function() {
+    this.id = id.value;
+    this.firstname = firstname.value;
+    this.lastname = lastname.value;
+    this.age = age.value;
+    this.email = email.value;
+    this.phone = phone.value;
+  };
+  let person = new Person();
+  state.push(person);
+  return person;
+}
+
+function updatePerson(id, firstname, lastname, age, email, phone) {
+  for (let i = 0; i < state.length; i++) {
+    if (id === state[i].id) {
+      state[i].firstname = firstname;
+      state[i].lastname = lastname;
+      state[i].age = age;
+      state[i].email = email;
+      state[i].phone = phone;
+      return state[i];
+    }
+  }
+  return state;
+}
+
+function deletePerson(id) {
+  for (let i = 0; i < state.length; i++) {
+    if (id.value === state[i].id) {
+      state.splice(i, 1);
+    }
+  }
+  console.log('dellocal');
+  return state;
+}
 
 function sync() {
-  render()
-  localStorage.setItem('person_data', JSON.stringify(state))
+  render();
+  localStorage.setItem('person_data', JSON.stringify(state));
 }
 
 function validate() {
-  const regex = /\D/g
+  const regex = /\D/g;
   if (regex.test(this.value)) {
-    id.value = ''
-    age.value = ''
-    alert('Please, enter only digits!!!')
+    id.value = '';
+    age.value = '';
+    alert('Please, enter only digits!!!');
   }
 }
-input[0].addEventListener('change', validate)
-input[3].addEventListener('change', validate)
+input[0].addEventListener('change', validate);
+input[3].addEventListener('change', validate);
 
 function render() {
-  list.innerHTML = ''
+  list.innerHTML = '';
   for (let i = 0; i < state.length; i++) {
-    const newLi = document.createElement('li')
-    newLi.innerHTML = `<div>${state[i].id}</div><div>${state[i].firstname}</div><div>${state[i].lastname}</div><div>${state[i].age}</div>`
-    list.append(newLi)
+    const newLi = document.createElement('li');
+    newLi.innerHTML = `<div class="div">${state[i].id}</div><div class="div">${state[i].firstname}</div><div class="div">${state[i].lastname}</div><div class="div">${state[i].age}</div><div class="div">${state[i].email}</div><div class="div">${state[i].phone}</div>`;
+    newLi.className = 'li';
+    list.append(newLi);
   }
   for (let i = 0; i < input.length; i++) {
-    input[i].value = ''
+    input[i].value = '';
   }
 }
+local.addEventListener('click', function() {
+  isIndexedDb = false;
+  render();
+});
+
+indexed.addEventListener('click', function() {
+  isIndexedDb = true;
+  renderIndexDb(db);
+});
+
+window.onload = function() {
+  if (data !== null) {
+    state = data;
+    // if (state !== null) {
+    render();
+  }
+};
 
 create.addEventListener('click', function() {
   if (
     id.value === '' ||
     firstname.value === '' ||
     lastname.value === '' ||
-    age.value === ''
+    age.value === '' ||
+    email.value === '' ||
+    phone.value === ''
   ) {
-    alert('Some fields are empty!!!')
+    alert('Some fields are empty!!!');
   } else {
-    for (let i = 0; i < state.length; i++) {
-      if (id.value === state[i].id) {
-        isId = true
+    if (isIndexedDb === false) {
+      for (let i = 0; i < state.length; i++) {
+        if (id.value === state[i].id) {
+          isId = true;
+        }
       }
-    }
-    if (isId === true) {
-      alert('This id is already exist!!!')
-      isId = false
+      if (isId === true) {
+        alert('This id is already exist!!!');
+        for (let i = 0; i < input.length; i++) {
+          input[i].value = '';
+        }
+        isId = false;
+      } else {
+        createPerson(id, firstname, lastname, age, email, phone);
+        sync();
+      }
     } else {
-      createPerson(id.value, firstname.value, lastname.value, age.value)
-      sync()
+      addIndexDb(db, id, firstname, lastname, age, email, phone);
+      renderIndexDb(db);
     }
   }
-})
+});
 
 update.addEventListener('click', function() {
   if (
     id.value === '' ||
     firstname.value === '' ||
     lastname.value === '' ||
-    age.value === ''
+    age.value === '' ||
+    email.value === '' ||
+    phone.value === ''
   ) {
-    alert('Some fields are empty!!!')
+    alert('Some fields are empty!!!');
   } else {
-    updatePerson(id.value, firstname.value, lastname.value, age.value)
-    sync()
-  }
-})
-
-del.addEventListener('click', function() {
-  for (let i = 0; i < state.length; i++) {
-    if (id.value === state[i].id) {
-      state.splice(i, 1)
-      isId = true
+    if (isIndexedDb === false) {
+      updatePerson(
+        id.value,
+        firstname.value,
+        lastname.value,
+        age.value,
+        email.value,
+        phone.value
+      );
+      sync();
+    } else if (isIndexedDb === true) {
+      updateIndexDb(id);
+      renderIndexDb(db);
     }
   }
-  if (isId === false) {
-    alert('This id is absent')
-  }
-  deletePerson(id.value)
-  sync()
-  isId = false
-})
+});
 
-read.addEventListener('click', function() {
-  state = data
-  render()
-})
+del.addEventListener('click', function() {
+  if (isIndexedDb === false) {
+    deletePerson(id);
+    sync();
+  } else if (isIndexedDb === true) {
+    delIndexDb(id);
+    renderIndexDb(db);
+  }
+});
