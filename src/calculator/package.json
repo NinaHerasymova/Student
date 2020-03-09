@@ -1,16 +1,21 @@
 {
-    "name": "landing",
+    "name": "calculator",
     "version": "1.0.0",
     "scripts": {
         "start": "gulp",
         "clean": "gulp clean",
         "build": "gulp build",
-        "test": "nyc mocha --opts ./mocha.opts"
+        "test": "nyc mocha --opts ./mocha.opts",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "prettier": "prettier --write src/**/*.js",
+        "eslint": "node_modules/.bin/eslint src/"
     },
     "dependencies": {
         "@babel/core": "7.6.0",
         "@babel/preset-env": "7.6.0",
         "@babel/register": "7.8.3",
+        "babel-eslint": "10.1.0",
         "browser-sync": "2.26.7",
         "chai": "4.2.0",
         "del": "5.1.0",
@@ -73,10 +78,12 @@
         "report-dir": "coverage"
     },
     "devDependencies": {
-        "eslint-config-prettier": "^6.9.0",
-        "eslint-plugin-prettier": "^3.1.2",
-        "husky": "^4.2.3",
-        "lint-staged": "^10.0.8",
-        "prettier": "^1.19.1"
+        "eslint-config-prettier": "6.9.0",
+        "eslint-plugin-jsx-a11y": "6.2.3",
+        "eslint-plugin-prettier": "3.1.2",
+        "eslint-plugin-react": "7.18.3",
+        "husky": "4.2.3",
+        "lint-staged": "10.0.8",
+        "prettier": "1.19.1"
     }
 }
