@@ -1,230 +1,232 @@
-const { List } = require('../../../list/List');
+const { List } = require('../../../list/List')
 
 function AList(array) {
-  List.apply(this, arguments);
-  this.defaultArray = array;
-  this.array = [];
-  this.init();
+  List.apply(this, arguments)
+  this.defaultArray = array
+  this.array = []
+  this.init()
 }
 
-AList.prototype = Object.create(List.prototype);
-AList.prototype.constructor = AList;
+AList.prototype = Object.create(List.prototype)
+AList.prototype.constructor = AList
 
 // ------Методы----------////
 
 AList.prototype.init = function() {
-  let index = 0;
+  let index = 0
   while (this.defaultArray[index] !== undefined) {
-    this.array[index] = this.defaultArray[index];
-    index++;
+    this.array[index] = this.defaultArray[index]
+    index++
   }
-  return this.array;
-};
+  return this.array
+}
 
 AList.prototype.size = function() {
-  let index = 0;
+  let index = 0
   while (this.array[index] !== undefined) {
-    index++;
+    index++
   }
-  return index;
-};
+  return index
+}
 
 AList.prototype.addStart = function(element) {
   for (let i = this.size() - 1; i >= 0; i--) {
-    this.array[i + 1] = this.array[i];
+    this.array[i + 1] = this.array[i]
   }
-  this.array[0] = element;
-  return this.size();
-};
+  this.array[0] = element
+  return this.size()
+}
 
 AList.prototype.addEnd = function(element) {
-  this.array[this.size()] = element;
-  return this.size();
-};
+  this.array[this.size()] = element
+  return this.size()
+}
 
 AList.prototype.delStart = function() {
-  const subArr = [];
-  let del;
+  const subArr = []
+  let del
   for (let i = 1; i < this.size(); i++) {
-    subArr[i - 1] = this.array[i];
-    del = this.array[0];
+    subArr[i - 1] = this.array[i]
+    del = this.array[0]
   }
-  this.array = subArr;
-  return del;
-};
+  this.array = subArr
+  return del
+}
 
 AList.prototype.delEnd = function() {
-  const subArr = [];
-  let del;
+  const subArr = []
+  let del
   for (let i = 0; i < this.size() - 1; i++) {
-    subArr[i] = this.array[i];
-    del = this.array[this.size() - 1];
+    subArr[i] = this.array[i]
+    del = this.array[this.size() - 1]
   }
-  this.array = subArr;
-  return del;
-};
+  this.array = subArr
+  return del
+}
 
 AList.prototype.delPosition = function(element) {
-  const subArr = [];
-  let del;
+  const subArr = []
+  let del
   for (let i = 0; i < this.size() - 1; i++) {
     if (i < element && this.array[i]) {
-      subArr[i] = this.array[i];
+      subArr[i] = this.array[i]
     } else {
-      subArr[i] = this.array[i + 1];
-      del = this.array[element];
+      subArr[i] = this.array[i + 1]
+      del = this.array[element]
     }
   }
-  return del;
-};
+  return del
+}
 
 AList.prototype.get = function(index) {
-  let gotten;
+  let gotten
   for (let i = 0; i < this.size(); i++) {
     if (i === index) {
-      gotten = this.array[i];
-      return gotten;
+      gotten = this.array[i]
+      return gotten
     }
   }
-};
+}
 
 AList.prototype.set = function(index, value) {
-  const put = [];
+  let put = []
   if (index > this.size()) {
-    return;
+    return
   }
   for (let i = 0; i < this.size(); i++) {
     if (i === index) {
-      put[i] = value;
+      put[i] = value
     } else {
-      put[i] = this.array[i];
+      put[i] = this.array[i]
     }
   }
-};
+  this.array = put
+  return this.array
+}
 
 AList.prototype.toString = function() {
-  let str = '';
+  let str = ''
   for (let i = 0; i < this.size(); i++) {
-    str += this.array[i];
+    str += this.array[i]
   }
-  return str;
-};
+  return str
+}
 
 AList.prototype.clear = function() {
-  this.init();
-  return this.array;
-};
+  this.init()
+  return this.array
+}
 
 AList.prototype.min = function() {
-  let minEl = this.array[0];
+  let minEl = this.array[0]
   for (let i = 0; i < this.size(); i++) {
     if (this.array[i] < minEl) {
-      minEl = this.array[i];
+      minEl = this.array[i]
     }
   }
-  return minEl;
-};
+  return minEl
+}
 
 AList.prototype.max = function() {
-  let maxEl = this.array[0];
+  let maxEl = this.array[0]
   for (let i = 0; i < this.size(); i++) {
     if (this.array[i] > maxEl) {
-      maxEl = this.array[i];
+      maxEl = this.array[i]
     }
   }
-  return maxEl;
-};
+  return maxEl
+}
 
 AList.prototype.sort = function() {
   for (let i = 0, endI = this.size() - 1; i < endI; i++) {
     for (let j = 0, endJ = endI - i; j < endJ; j++) {
       if (this.array[j] > this.array[j + 1]) {
-        const swap = this.array[j];
-        this.array[j] = this.array[j + 1];
-        this.array[j + 1] = swap;
+        const swap = this.array[j]
+        this.array[j] = this.array[j + 1]
+        this.array[j + 1] = swap
       }
     }
   }
-  return this.array;
-};
+  return this.array
+}
 
 AList.prototype.maxIndex = function() {
-  let maxIn = 0;
+  let maxIn = 0
   for (let i = 0; i < this.size(); i++) {
     if (this.array[i] > this.array[maxIn]) {
-      maxIn = i;
+      maxIn = i
     }
   }
-  return maxIn;
-};
+  return maxIn
+}
 
 AList.prototype.minIndex = function() {
-  let minIn = 0;
+  let minIn = 0
   for (let i = 0; i < this.size(); i++) {
     if (this.array[i] < this.array[minIn]) {
-      minIn = i;
+      minIn = i
     }
   }
-  return minIn;
-};
+  return minIn
+}
 
 AList.prototype.reverse = function() {
-  const res = [];
-  let k = 0;
+  const res = []
+  let k = 0
   for (let i = this.size() - 1; i >= 0; i--) {
-    res[k] = this.array[i];
-    k++;
+    res[k] = this.array[i]
+    k++
   }
-  return res;
-};
+  return res
+}
 
 AList.prototype.halfReverse = function() {
-  const subArr = [];
-  const leng = this.size();
-  let i = 0;
+  const subArr = []
+  const leng = this.size()
+  let i = 0
   if (leng % 2 === 0) {
     while (i < leng / 2) {
-      subArr[i] = this.array[leng / 2 - 1 - i];
-      i++;
+      subArr[i] = this.array[leng / 2 - 1 - i]
+      i++
     }
     while (i < leng) {
-      subArr[i] = this.array[leng + leng / 2 - 1 - i];
-      i++;
+      subArr[i] = this.array[leng + leng / 2 - 1 - i]
+      i++
     }
   } else {
     while (i < leng / 2 - 0.5) {
-      subArr[i] = this.array[leng / 2 - 1.5 - i];
-      i++;
+      subArr[i] = this.array[leng / 2 - 1.5 - i]
+      i++
     }
     while (i === leng / 2 - 0.5) {
-      subArr[i] = this.array[i];
-      i++;
+      subArr[i] = this.array[i]
+      i++
     }
     while (i < leng) {
-      subArr[i] = this.array[leng + leng / 2 - 0.5 - i];
-      i++;
+      subArr[i] = this.array[leng + leng / 2 - 0.5 - i]
+      i++
     }
   }
-  this.array = subArr;
-  return this.array;
-};
+  this.array = subArr
+  return this.array
+}
 
 AList.prototype.addPosition = function(index, value) {
-  const put = [];
+  const put = []
   if (index > this.size()) {
-    return;
+    return
   }
   for (let i = 0; i < this.size() + 1; i++) {
     if (i === index) {
-      put[i] = value;
+      put[i] = value
     } else if (i < index) {
-      put[i] = this.array[i];
+      put[i] = this.array[i]
     } else {
-      put[i] = this.array[i - 1];
+      put[i] = this.array[i - 1]
     }
   }
-  this.array = put;
-  return this.array;
-};
+  this.array = put
+  return this.array
+}
 
-module.exports.AList = AList;
+module.exports.AList = AList
