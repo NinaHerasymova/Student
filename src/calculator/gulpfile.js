@@ -10,6 +10,8 @@ const browserSync = require('browser-sync').create()
 const reload = browserSync.reload
 const fileinclude = require('gulp-file-include')
 const sass = require('gulp-sass')
+const webpack = require('webpack')
+const webpackConfig = require('./webpack.config.js')
 
 const SRC = './src'
 const BUILD = './build'

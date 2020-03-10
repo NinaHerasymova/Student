@@ -5,6 +5,7 @@
         "start": "gulp",
         "clean": "gulp clean",
         "build": "gulp build",
+        "bundle": "webpack",
         "test": "nyc mocha --opts ./mocha.opts",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -84,6 +85,8 @@
         "eslint-plugin-react": "7.18.3",
         "husky": "4.2.3",
         "lint-staged": "10.0.8",
-        "prettier": "1.19.1"
+        "prettier": "1.19.1",
+        "webpack": "4.42.0",
+        "webpack-cli": "3.3.11"
     }
 }
