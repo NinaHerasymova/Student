@@ -33,7 +33,7 @@ function deletePerson(id) {
   return state;
 }
 
-// module.exports.updatePerson = updatePerson
-// module.exports.deletePerson = deletePerson
-// module.exports.createPerson = createPerson
-// module.exports.state = state
+module.exports.updatePerson = updatePerson;
+module.exports.deletePerson = deletePerson;
+module.exports.createPerson = createPerson;
+module.exports.state = state;

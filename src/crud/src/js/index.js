@@ -1,7 +1,7 @@
-// const createPerson = require('./index.logic')
-// const updatePerson = require('./index.logic')
-// const deletePerson = require('./index.logic')
-// let state = require('./index.logic')
+// const createPerson = require('./index.logic');
+// const updatePerson = require('./index.logic');
+// const deletePerson = require('./index.logic');
+// let state = require('./index.logic');
 
 const list = document.querySelector('.list');
 const input = document.querySelectorAll('.inputs__userdata');
@@ -19,7 +19,6 @@ const del = document.querySelector('.del');
 const data = JSON.parse(localStorage.getItem('person_data'));
 let isId = false;
 let isIndexedDb = false;
-
 let state = [];
 let store;
 let persons;
@@ -163,7 +162,6 @@ function deletePerson(id) {
       state.splice(i, 1);
     }
   }
-  console.log('dellocal');
   return state;
 }
 
@@ -195,6 +193,7 @@ function render() {
     input[i].value = '';
   }
 }
+
 local.addEventListener('click', function() {
   isIndexedDb = false;
   render();
@@ -208,7 +207,6 @@ indexed.addEventListener('click', function() {
 window.onload = function() {
   if (data !== null) {
     state = data;
-    // if (state !== null) {
     render();
   }
 };
