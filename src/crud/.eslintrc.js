@@ -18,6 +18,7 @@ module.exports = {
     benchmark: true,
     expect: true,
     suite: true,
+    assert: true,
   },
   rules: {
     'prettier/prettier': [
@@ -26,8 +27,8 @@ module.exports = {
         bracketSpacing: true,
         jsxBracketSameLine: false,
         jsxSingleQuote: false,
-        printWidth: 80,
-        semi: false,
+        printWidth: '80',
+        semi: true,
         singleQuote: true,
         tabWidth: 2,
         trailingComma: 'es5',
@@ -71,5 +72,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 'warn',
     'import/no-cycle': 'warn',
     'no-bitwise': 'warn',
+    'no-undef': 'warn',
   },
 }

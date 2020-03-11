@@ -1,30 +1,39 @@
-function createPerson() {
-  person = new Person(id.value, firstname.value, lastname.value, age.value)
-  person.id = id.value
-  person.firstname = firstname.value
-  person.lastname = lastname.value
-  person.age = age.value
-  state.push(person)
+const state = [];
+
+function createPerson(id, firstname, lastname, age) {
+  const Person = function() {
+    this.id = id;
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.age = age;
+  };
+  const person = new Person();
+  state.push(person);
+  return state;
 }
 
-function updatePerson(state) {
+function updatePerson(id, firstname, lastname, age) {
   for (let i = 0; i < state.length; i++) {
-    if (id.value === state[i].id) {
-      state[i].firstname = firstname.value
-      state[i].lastname = lastname.value
-      state[i].age = age.value
+    if (id === state[i].id) {
+      state[i].firstname = firstname;
+      state[i].lastname = lastname;
+      state[i].age = age;
+      return state[i];
     }
   }
+  return state;
 }
 
-function deletePerson(state) {
+function deletePerson(id) {
   for (let i = 0; i < state.length; i++) {
-    if (id.value === state[i].id) {
-      state.splice(i, 1)
+    if (id === state[i].id) {
+      state.splice(i, 1);
     }
   }
+  return state;
 }
 
-module.exports = updatePerson
-module.exports = deletePerson
-module.exports = createPerson
+module.exports.updatePerson = updatePerson;
+module.exports.deletePerson = deletePerson;
+module.exports.createPerson = createPerson;
+module.exports.state = state;

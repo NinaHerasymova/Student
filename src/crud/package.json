@@ -5,6 +5,7 @@
         "start": "gulp",
         "clean": "gulp clean",
         "build": "gulp build",
+        "bundle": "webpack",
         "test": "nyc mocha --opts ./mocha.opts",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
@@ -15,11 +16,12 @@
         "@babel/core": "7.6.0",
         "@babel/preset-env": "7.6.0",
         "@babel/register": "7.8.3",
+        "babel": "6.23.0",
         "babel-eslint": "10.1.0",
         "browser-sync": "2.26.7",
         "chai": "4.2.0",
         "del": "5.1.0",
-        "eslint": "^6.8.0",
+        "eslint": "6.8.0",
         "eslint-config-airbnb": "18.0.1",
         "eslint-plugin-babel": "5.3.0",
         "eslint-plugin-import": "2.19.1",
@@ -39,7 +41,8 @@
         "nyc": "15.0.0",
         "raf": "3.4.1",
         "sinon": "9.0.0",
-        "through2": "3.0.1"
+        "through2": "3.0.1",
+        "webpack": "4.42.0"
     },
     "nyc": {
         "extension": [
@@ -47,10 +50,10 @@
         ],
         "check-coverage": true,
         "per-file": true,
-        "lines": 100,
-        "statements": 100,
-        "functions": 100,
-        "branches": 100,
+        "lines": 90,
+        "statements": 90,
+        "functions": 90,
+        "branches": 90,
         "reporter": [
             "html",
             "text",
@@ -84,6 +87,7 @@
         "eslint-plugin-react": "7.18.3",
         "husky": "4.2.3",
         "lint-staged": "10.0.8",
-        "prettier": "1.19.1"
+        "prettier": "1.19.1",
+        "webpack-cli": "3.3.11"
     }
 }
