@@ -1,4 +1,4 @@
-const { List } = require('../../../list/List')
+const List = require('../../../list/List')
 
 function AList(array) {
   List.apply(this, arguments)
@@ -42,23 +42,23 @@ AList.prototype.addEnd = function(element) {
   return this.size()
 }
 
-AList.prototype.delStart = function() {
-  const subArr = []
-  let del
-  for (let i = 1; i < this.size(); i++) {
-    subArr[i - 1] = this.array[i]
-    del = this.array[0]
-  }
-  this.array = subArr
-  return del
-}
-
 AList.prototype.delEnd = function() {
   const subArr = []
   let del
   for (let i = 0; i < this.size() - 1; i++) {
     subArr[i] = this.array[i]
     del = this.array[this.size() - 1]
+  }
+  this.array = subArr
+  return del
+}
+
+AList.prototype.delStart = function() {
+  const subArr = []
+  let del
+  for (let i = 1; i < this.size(); i++) {
+    subArr[i - 1] = this.array[i]
+    del = this.array[0]
   }
   this.array = subArr
   return del
