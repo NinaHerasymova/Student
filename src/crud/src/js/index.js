@@ -70,25 +70,21 @@ function updateIndexDb(id) {
       gotten.age = age.value;
       gotten.email = email.value;
       gotten.phone = phone.value;
-    } else {
-      console.log('note 1 not found');
+      var request = db
+        .transaction(['persons'], 'readwrite')
+        .objectStore('persons')
+        .delete(id.value);
+
+      let tx = db.transaction(['persons'], 'readwrite');
+      store = tx.objectStore('persons');
+      store.add(gotten);
+      tx.onerror = event => {
+        alert('error storing note ' + event.target.errorCode);
+      };
+      request.onsuccess = function(event) {
+        renderIndexDb(db);
+      };
     }
-    var request = db
-      .transaction(['persons'], 'readwrite')
-      .objectStore('persons')
-      .delete(id.value);
-    request.onsuccess = function(event) {
-      // It's gone!
-    };
-    let tx = db.transaction(['persons'], 'readwrite');
-    store = tx.objectStore('persons');
-    store.add(gotten);
-    tx.oncomplete = () => {
-      console.log('stored note!');
-    };
-    tx.onerror = event => {
-      alert('error storing note ' + event.target.errorCode);
-    };
   };
 }
 
@@ -97,7 +93,6 @@ function delIndexDb(id) {
     .transaction(['persons'], 'readwrite')
     .objectStore('persons')
     .delete(id.value);
-  console.log('delin');
   request.onsuccess = function(event) {
     // It's gone!
   };
